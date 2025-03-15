@@ -62,7 +62,7 @@ def convert_video():
             "-ss", "0",  # Precise seek (after input)
             "-t", str(duration),  # Use calculated duration
             "-vf", f"scale={resolution}:force_original_aspect_ratio=decrease,pad={resolution}:(ow-iw)/2:(oh-ih)/2",
-            "-c:v", "libx264",  # More compatible encoder
+            "-c:v", "h264_nvenc",  # More compatible encoder
             "-crf", "18",
             "-preset", "slow",
             "-c:a", "aac",
