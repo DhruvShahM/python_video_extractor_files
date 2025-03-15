@@ -3,16 +3,33 @@ import subprocess
 import wave
 import json
 import srt
+import tkinter as tk
+from tkinter import filedialog
 from vosk import Model, KaldiRecognizer
 from moviepy import VideoFileClip
 
-# Paths
-VIDEO_PATH = r"C:/Users/dhruv/Videos/video_selected/1.1_126.mp4"
-AUDIO_PATH = "temp_audio.wav"
+# GUI for File Selection
+def select_file(title, filetypes):
+    root = tk.Tk()
+    root.withdraw()
+    file_path = filedialog.askopenfilename(title=title, filetypes=filetypes)
+    return file_path
+
+def select_directory(title):
+    root = tk.Tk()
+    root.withdraw()
+    folder_path = filedialog.askdirectory(title=title)
+    return folder_path
+
+# Get user-selected files
+VIDEO_PATH = select_file("Select a Video File", [("MP4 files", "*.mp4"), ("All files", "*.*")])
 MODEL_PATH = r"C:/Users/dhruv/Downloads/vosk-model-small-hi-0.22"
+
+# Auto-generate paths
+AUDIO_PATH = "temp_audio.wav"
 SRT_PATH = "subtitles.srt"
 ASS_PATH = "subtitles.ass"
-OUTPUT_VIDEO_PATH = r"C:/Users/dhruv/Videos/video_selected/1.1_126_subtitled.mp4"
+OUTPUT_VIDEO_PATH = VIDEO_PATH.replace(".mp4", "_subtitled.mp4")
 
 # Step 1: Extract Audio from Video
 def extract_audio(video_path, audio_path):
@@ -95,6 +112,10 @@ def add_subtitles_to_video(video_path, subtitle_path, output_path):
 
 # Step 6: Run the Full Process
 def generate_subtitled_video():
+    if not VIDEO_PATH or not MODEL_PATH:
+        print("❌ No file selected. Exiting...")
+        return
+
     extract_audio(VIDEO_PATH, AUDIO_PATH)
     transcriptions = transcribe_audio(AUDIO_PATH, MODEL_PATH)
     create_srt(transcriptions, SRT_PATH)

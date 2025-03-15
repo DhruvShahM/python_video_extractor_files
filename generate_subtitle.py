@@ -5,6 +5,7 @@ import json
 import srt
 from vosk import Model, KaldiRecognizer
 from moviepy import VideoFileClip
+from datetime import timedelta
 
 # Paths
 VIDEO_PATH = r"C:/Users/dhruv/Videos/video_selected/1.1_126.mp4"
@@ -38,26 +39,34 @@ def transcribe_audio(audio_path, model_path):
 # Convert Vosk output to SRT format
 def create_srt(transcriptions, srt_file):
     subtitles = []
-    
-    for i, entry in enumerate(transcriptions):
+    sentence = []
+    start_time = None
+
+    for entry in transcriptions:
+        word = entry["word"]
         start_seconds = entry["start"]
         end_seconds = entry["end"]
-        text = entry["word"]
 
-        # Convert seconds to SRT timestamp format
-        def format_time(seconds):
-            hours, remainder = divmod(seconds, 3600)
-            minutes, seconds = divmod(remainder, 60)
-            milliseconds = int((seconds - int(seconds)) * 1000)
-            return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02},{milliseconds:03}"
+        if not start_time:
+            start_time = start_seconds  # Start of sentence
 
-        start_timestamp = format_time(start_seconds)
-        end_timestamp = format_time(end_seconds)
+        sentence.append(word)
 
-        subtitles.append(srt.Subtitle(index=i+1,
-                                      start=srt.srt_timestamp_to_timedelta(start_timestamp),
-                                      end=srt.srt_timestamp_to_timedelta(end_timestamp),
-                                      content=text))
+        # End sentence if duration > 2.5 seconds or if punctuation is detected
+        if end_seconds - start_time > 2.5 or word in ".?!।":
+            # Convert timestamps to timedelta
+            start_delta = timedelta(seconds=start_time)
+            end_delta = timedelta(seconds=end_seconds)
+            
+            # Create subtitle block
+            subtitles.append(srt.Subtitle(index=len(subtitles) + 1,
+                                          start=start_delta,
+                                          end=end_delta,
+                                          content=" ".join(sentence)))
+
+            # Reset sentence
+            sentence = []
+            start_time = None
 
     # Write to SRT file
     with open(srt_file, "w", encoding="utf-8") as f:
