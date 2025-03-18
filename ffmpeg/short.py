@@ -1,6 +1,7 @@
 import subprocess
 import tkinter as tk
 from tkinter import filedialog
+import re
 
 def select_file(title, filetypes):
     """ Open a file selection dialog """
@@ -14,6 +15,17 @@ def save_file(title, defaultextension, filetypes):
     root.withdraw()
     return filedialog.asksaveasfilename(title=title, defaultextension=defaultextension, filetypes=filetypes)
 
+def parse_time(time_str):
+    """ Convert mm:ss format to seconds """
+    match = re.match(r'^(\d+):(\d{2})$', time_str)
+    if match:
+        minutes, seconds = map(int, match.groups())
+        return minutes * 60 + seconds
+    elif time_str.isdigit():
+        return int(time_str)
+    else:
+        raise ValueError("Invalid time format! Use mm:ss or seconds.")
+
 def convert_video():
     input_file = select_file("Select Input Video", [("MP4 Files", "*.mp4"), ("All Files", "*.*")])
     if not input_file:
@@ -25,12 +37,11 @@ def convert_video():
         print("No output file selected.")
         return
 
-    # User input for trimming the video
     try:
-        start_time = int(input("⏳ Enter start time (in seconds): "))
-        duration = int(input("🎬 Enter duration of short video (in seconds): "))
-    except ValueError:
-        print("❌ Invalid input! Please enter numbers only.")
+        start_time = parse_time(input("⏳ Enter start time (mm:ss or seconds): "))
+        duration = parse_time(input("🎬 Enter duration of short video (mm:ss or seconds): "))
+    except ValueError as e:
+        print(f"❌ {e}")
         return
 
     resolution = "1080:1920"  # Mobile screen resolution
@@ -38,8 +49,8 @@ def convert_video():
     command = [
         "ffmpeg",
         "-i", input_file,
-        "-ss", str(start_time),  # Start time
-        "-t", str(duration),  # Duration of the clip
+        "-ss", str(start_time),  # Start time in seconds
+        "-t", str(duration),  # Duration in seconds
         "-vf", f"scale={resolution}:force_original_aspect_ratio=decrease,pad={resolution}:(ow-iw)/2:(oh-ih)/2",
         "-c:v", "h264_nvenc",
         "-crf", "18",
