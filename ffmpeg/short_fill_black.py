@@ -1,6 +1,6 @@
 import subprocess
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, simpledialog
 import re
 import sys
 import time
@@ -61,12 +61,19 @@ def convert_video():
     resolutions = {"1": "1080:1920", "2": "720:1280", "3": "480:854"}
     resolution = resolutions.get(res_choice, "1080:1920")
 
+    root = tk.Tk()
+    root.withdraw()
+    color_code = simpledialog.askstring("Color Selection", "Enter HEX color code (e.g., #22B14C):")
+    if not color_code or not re.match(r"^#([A-Fa-f0-9]{6})$", color_code):
+        print(Fore.RED + "Invalid color code! Using default #22B14C.")
+        color_code = "#22B14C"
+
     command = [
         "ffmpeg",
         "-i", input_file,
         "-ss", str(start_time),
         "-t", str(duration),
-        "-vf", f"scale={resolution}:force_original_aspect_ratio=decrease,pad={resolution}:(ow-iw)/2:(oh-ih)/2:color=#22B14C",
+        "-vf", f"scale={resolution}:force_original_aspect_ratio=decrease,pad={resolution}:(ow-iw)/2:(oh-ih)/2:color={color_code}",
         "-c:v", "h264_nvenc",
         "-crf", "18",
         "-preset", "slow",
