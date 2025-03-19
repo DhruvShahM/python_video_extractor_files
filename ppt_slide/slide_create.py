@@ -23,12 +23,14 @@ else:
 
     # Check if the slide has a title placeholder
     if slide.shapes.title:
-        slide.shapes.title.text = "Demo of the title placeholder"
+        print("Enter title for the first slide:")
+        slide.shapes.title.text = input()
 
     # Check for subtitle placeholder
     for shape in slide.shapes:
         if shape.placeholder_format.idx == 1:  # Subtitle placeholder typically has index 1
-            shape.text = "Demo of the subtitle placeholder"
+            print("Enter subtitle for the first slide:")
+            shape.text = input()
             break
 
     # Create a new slide with title and content layout
@@ -37,11 +39,13 @@ else:
 
     # Set title and content for the new slide
     if new_slide.shapes.title:
-        new_slide.shapes.title.text = "New Slide Title"
+        print("Enter title for the new slide:")
+        new_slide.shapes.title.text = input()
     
     for shape in new_slide.shapes:
         if shape.placeholder_format.idx == 1:  # Content placeholder typically has index 1
-            shape.text = "This is the content of the new slide."
+            print("Enter content for the new slide:")
+            shape.text = input()
             break
 
     # Save the modified PowerPoint file
