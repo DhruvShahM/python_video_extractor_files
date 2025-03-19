@@ -18,7 +18,7 @@ else:
     # Load the existing PowerPoint presentation
     ppt = Presentation(file_path)
 
-    # Ensure the first slide remains unchanged
+    # Modify the first slide
     slide = ppt.slides[0]  # 0 means the first slide
 
     # Check if the slide has a title placeholder
@@ -33,20 +33,25 @@ else:
             shape.text = input()
             break
 
-    # Create a new slide with title and content layout
-    slide_layout = ppt.slide_layouts[1]  # Title and Content layout
-    new_slide = ppt.slides.add_slide(slide_layout)
+    # Ask for the number of new slides to create
+    print("How many new slides do you want to create?")
+    num_slides = int(input())
 
-    # Set title and content for the new slide
-    if new_slide.shapes.title:
-        print("Enter title for the new slide:")
-        new_slide.shapes.title.text = input()
-    
-    for shape in new_slide.shapes:
-        if shape.placeholder_format.idx == 1:  # Content placeholder typically has index 1
-            print("Enter content for the new slide:")
-            shape.text = input()
-            break
+    for i in range(num_slides):
+        # Create a new slide with title and content layout
+        slide_layout = ppt.slide_layouts[1]  # Title and Content layout
+        new_slide = ppt.slides.add_slide(slide_layout)
+
+        # Set title and content for the new slide
+        if new_slide.shapes.title:
+            print(f"Enter title for slide {i + 2}:")
+            new_slide.shapes.title.text = input()
+        
+        for shape in new_slide.shapes:
+            if shape.placeholder_format.idx == 1:  # Content placeholder typically has index 1
+                print(f"Enter content for slide {i + 2}:")
+                shape.text = input()
+                break
 
     # Save the modified PowerPoint file
     output_file = "updated_presentation.pptx"
