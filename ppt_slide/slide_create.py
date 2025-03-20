@@ -19,12 +19,19 @@ class PPTEditorApp:
         self.ppt = Presentation(self.file_path)
         self.slides = self.ppt.slides
         
-        # Ask user how many slides they want to create
+        # Ask user how many new slides they want to create (excluding the first one)
         num_new_slides = simpledialog.askinteger("Slide Count", "How many new slides do you want to create?", minvalue=1)
-        for _ in range(num_new_slides):
-            slide_layout = self.ppt.slide_layouts[1]  # Title and Content layout
-            self.ppt.slides.add_slide(slide_layout)
         
+        # Calculate how many new slides are needed, avoiding excess slide creation
+        slides_to_add = num_new_slides - (len(self.slides) - 1)  # Subtract 1 to exclude the first slide
+        
+        # Add only the required number of new slides
+        if slides_to_add > 0:
+            for _ in range(slides_to_add):
+                slide_layout = self.ppt.slide_layouts[1]  # Title and Content layout
+                self.ppt.slides.add_slide(slide_layout)
+        
+        # Refresh the slide list after adding new slides
         self.slides = self.ppt.slides
         self.num_slides = len(self.slides)
         
