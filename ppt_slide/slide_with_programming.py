@@ -23,12 +23,34 @@ def get_language_input():
     language = simpledialog.askstring("Programming Language", "Enter the programming language (e.g., python, java, c++):", parent=root)
     return language.lower() if language else "java"  # Default to Java
 
-# Function to get multi-line user input using a dialog box
-def get_code_input():
+# Function to get the number of slides from the user
+def get_slide_count():
     root = tk.Tk()
     root.withdraw()
-    code_text = simpledialog.askstring("Code Input", "Enter your code snippet:", parent=root)
-    return code_text if code_text else ""
+    slide_count = simpledialog.askinteger("Number of Slides", "How many slides do you want for the code snippet?", minvalue=1, parent=root)
+    return slide_count if slide_count else 1  # Default to 1 if not provided
+
+# Function to get multi-line user input for each slide
+def get_code_input(slide_count):
+    root = tk.Tk()
+    root.withdraw()
+    code_snippets = []
+    for i in range(slide_count):
+        code_text = simpledialog.askstring("Code Input", f"Enter your code snippet for slide {i+1}:", parent=root)
+        code_snippets.append(code_text if code_text else "")
+    return code_snippets
+
+# Function to get output folder and filename
+def get_output_path():
+    root = tk.Tk()
+    root.withdraw()
+    folder_selected = filedialog.askdirectory(title="Select Folder to Save PowerPoint")
+    if not folder_selected:
+        return None, None
+    file_name = simpledialog.askstring("Save As", "Enter output PowerPoint filename (without extension):", parent=root)
+    if not file_name:
+        return None, None
+    return folder_selected, file_name + ".pptx"
 
 # Function to format code using Pygments
 def format_code_for_ppt(code, language):
@@ -52,41 +74,48 @@ if not ppt_template or not os.path.exists(ppt_template):
 # Get programming language from user
 language = get_language_input()
 
-# Get code input from user
-code_content = get_code_input()
-if not code_content.strip():
-    print("No code entered.")
-    exit()
+# Get the number of slides from the user
+slide_count = get_slide_count()
 
-# Beautify the code
-formatted_code = format_code_for_ppt(code_content, language)
+# Get code input for each slide from the user
+code_snippets = get_code_input(slide_count)
+
+# Get output folder and filename
+output_folder, output_filename = get_output_path()
+if not output_folder or not output_filename:
+    print("Invalid output path or filename.")
+    exit()
 
 # Load the selected PowerPoint template
 prs = Presentation(ppt_template)
 
-# Add a blank slide
-slide_layout = prs.slide_layouts[6]  # Blank slide
-slide = prs.slides.add_slide(slide_layout)
+# Add slides and insert code snippets
+for i in range(slide_count):
+    slide_layout = prs.slide_layouts[6]  # Blank slide
+    slide = prs.slides.add_slide(slide_layout)
 
-# Add a textbox for code content
-textbox = slide.shapes.add_textbox(Inches(1), Inches(1), Inches(8.5), Inches(5))
-text_frame = textbox.text_frame
-text_frame.text = ""
-text_frame.word_wrap = False  # Preserve indentation and structure
+    # Beautify the code
+    formatted_code = format_code_for_ppt(code_snippets[i], language)
+    
+    # Add a textbox for code content
+    textbox = slide.shapes.add_textbox(Inches(1), Inches(1), Inches(8.5), Inches(5))
+    text_frame = textbox.text_frame
+    text_frame.text = ""
+    text_frame.word_wrap = False  # Preserve indentation and structure
 
-# Format text inside the textbox
-p = text_frame.add_paragraph()
-p.text = formatted_code
-p.font.name = "Courier New"
-p.font.size = Pt(16)
-p.alignment = PP_ALIGN.LEFT
-p.font.color.rgb = RGBColor(255, 255, 255)
+    # Format text inside the textbox
+    p = text_frame.add_paragraph()
+    p.text = formatted_code
+    p.font.name = "Courier New"
+    p.font.size = Pt(16)
+    p.alignment = PP_ALIGN.LEFT
+    p.font.color.rgb = RGBColor(255, 255, 255)
 
-# Set background color to black for better visibility
-textbox.fill.solid()
-textbox.fill.fore_color.rgb = RGBColor(0, 0, 0)
+    # Set background color to black for better visibility
+    textbox.fill.solid()
+    textbox.fill.fore_color.rgb = RGBColor(0, 0, 0)
 
 # Save modified PowerPoint
-output_pptx = "output.pptx"
+output_pptx = os.path.join(output_folder, output_filename)
 prs.save(output_pptx)
 print(f"PPTX saved as {output_pptx}")
