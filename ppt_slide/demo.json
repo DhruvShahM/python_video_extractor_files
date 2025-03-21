@@ -1,0 +1,75 @@
+[
+    {
+        "title": "Introduction to Dependency Injection",
+     "content": "### Constructor Injection (Preferred for Mandatory Dependencies)\n\n**Use when:**\n\n- Dependencies are mandatory for the object to function correctly.\n- You want to enforce immutability (i.e., dependencies can’t be changed after object creation).\n- The class has a few dependencies (too many dependencies can make constructors bulky).\n- You want to ensure testability and better readability of the code.\n\n**Pros:**\n✔ Ensures dependencies are available at object creation.  \n✔ Encourages immutability (no unintended changes).  \n✔ Simplifies unit testing (dependencies must be provided).  \n\n**Cons:**\n❌ Can lead to large constructors if there are too many dependencies.  \n❌ Reduces flexibility (once created, dependencies can't be altered easily).",
+        "slide_type": "text",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Constructor Injection - Definition",
+        "content": "### When to Use Constructor Injection:\n- Dependencies are **mandatory**.\n- Promotes **immutability** (dependencies can't be changed after creation).\n- Ensures **testability** and **better readability**.",
+        "slide_type": "text",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Constructor Injection - Example",
+         "content": "package com.example.userservice.controller;\n\nimport com.example.userservice.model.User;\nimport com.example.userservice.service.UserService;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.web.bind.annotation.*;\n\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/users\")\npublic class UserController {\n    @Autowired\n    private UserService userService;\n\n    @GetMapping\n    public List<User> getAllUsers() {\n        return userService.getAllUsers();\n    }\n\n    @GetMapping(\"/{id}\")\n    public User getUserById(@PathVariable Long id) {\n        return userService.getUserById(id);\n    }\n\n    @PostMapping\n    public User saveUser(@RequestBody User user) {\n        return userService.saveUser(user);\n    }\n\n    @DeleteMapping(\"/{id}\")\n    public void deleteUser(@PathVariable Long id) {\n        userService.deleteUser(id);\n    }\n}",
+        "slide_type": "code",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Setter Injection - Definition",
+        "content": "### When to Use Setter Injection:\n- Dependencies are **optional** or configurable after object creation.\n- Allows **default values** and **runtime modifications**.\n- Provides more flexibility for dependency changes.",
+        "slide_type": "text",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Setter Injection - Example",
+        "content": "**Golang Example:**\n```go\n type Service struct {\n     repo Repository\n }\n \n func (s *Service) SetRepository(repo Repository) {\n     s.repo = repo\n }\n \n func (s *Service) GetData() string {\n     if s.repo == nil {\n         return \"No repository set\"\n     }\n     return s.repo.FetchData()\n }\n```",
+        "slide_type": "code",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Field Injection (Not Recommended)",
+        "content": "Field Injection allows direct assignment of dependencies but is **not recommended** because it:\n- Breaks encapsulation.\n- Makes dependencies difficult to track.\n- Can lead to runtime errors if dependencies are not set before usage.",
+        "slide_type": "text",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Field Injection - Example",
+        "content": "**Golang Example:**\n```go\n type Service struct {\n     Repo Repository // Dependency injected directly\n }\n \n func (s *Service) GetData() string {\n     return s.Repo.FetchData()\n }\n```",
+        "slide_type": "code",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Comparison Table",
+        "content": "| Criteria | Constructor Injection | Setter Injection | Field Injection |\n|----------|-----------------------|------------------|----------------|\n| Mandatory Dependency | ✅ Yes | ❌ No | ❌ No |\n| Optional Dependency | ❌ No | ✅ Yes | ✅ Yes |\n| Immutability | ✅ Yes | ❌ No | ❌ No |\n| Many Dependencies | ❌ No | ✅ Yes | ✅ Yes |\n| Runtime Modification | ❌ No | ✅ Yes | ✅ Yes |\n| Best Practice | ✅ Preferred | ⚠️ Use Carefully | ❌ Avoid |",
+        "slide_type": "text",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      },
+      {
+        "title": "Best Practices",
+        "content": "- **Prefer constructor injection** for core dependencies.\n- **Use setter injection** for optional or configurable dependencies.\n- **Avoid field injection** due to maintainability and testability issues.\n- **Leverage DI frameworks** (e.g., Wire in Golang) to simplify dependency management.",
+        "slide_type": "text",
+        "font_color": "#FFFFFF",
+        "font_size": 16,
+        "background_color": "#000000"
+      }
+  ]
+  

@@ -1,0 +1,91 @@
+[
+    {
+      "title": "Spring Boot Microservice Example",
+      "content": "A simple Spring Boot microservice with RESTful APIs, database interaction using JPA and H2, and optional service discovery using Eureka.",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 1: Create a Spring Boot Application",
+      "content": "Use Spring Initializr with dependencies: Spring Web, Spring Boot DevTools, Spring Data JPA, H2 Database, Eureka Client (optional).",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 2: Define the Microservice",
+      "content": "Create a simple User Microservice with CRUD operations.",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 3: User Entity - Explanation",
+      "content": "The User entity represents the model for the user data. It includes fields like id, name, and email and is mapped to a database table.",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 3: User Entity - Code",
+      "content": "```java\npackage com.example.userservice.model;\n\nimport jakarta.persistence.*;\nimport lombok.*;\n\n@Entity\n@Data\n@NoArgsConstructor\n@AllArgsConstructor\npublic class User {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    \n    private String name;\n    private String email;\n}\n```",
+      "slide_type": "code",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 4: Repository Layer - Explanation",
+      "content": "The repository layer acts as the data access layer, providing an interface to interact with the database using Spring Data JPA.",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 4: Repository Layer - Code",
+      "content": "```java\npackage com.example.userservice.repository;\n\nimport com.example.userservice.model.User;\nimport org.springframework.data.jpa.repository.JpaRepository;\n\npublic interface UserRepository extends JpaRepository<User, Long> {}\n```",
+      "slide_type": "code",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 5: Service Layer - Explanation",
+      "content": "The service layer contains business logic and acts as an intermediary between the repository and controller layers.",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 5: Service Layer - Code",
+      "content": "```java\npackage com.example.userservice.service;\n\nimport com.example.userservice.model.User;\nimport com.example.userservice.repository.UserRepository;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Service;\nimport java.util.List;\n\n@Service\npublic class UserService {\n    @Autowired\n    private UserRepository userRepository;\n\n    public List<User> getAllUsers() {\n        return userRepository.findAll();\n    }\n\n    public User getUserById(Long id) {\n        return userRepository.findById(id).orElse(null);\n    }\n\n    public User saveUser(User user) {\n        return userRepository.save(user);\n    }\n\n    public void deleteUser(Long id) {\n        userRepository.deleteById(id);\n    }\n}\n```",
+      "slide_type": "code",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 6: Controller Layer - Explanation",
+      "content": "The controller layer handles HTTP requests and maps them to service methods to process user data.",
+      "slide_type": "text",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    },
+    {
+      "title": "Step 6: Controller Layer - Code",
+      "content": "```java\npackage com.example.userservice.controller;\n\nimport com.example.userservice.model.User;\nimport com.example.userservice.service.UserService;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.web.bind.annotation.*;\n\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/users\")\npublic class UserController {\n    @Autowired\n    private UserService userService;\n\n    @GetMapping\n    public List<User> getAllUsers() {\n        return userService.getAllUsers();\n    }\n\n    @GetMapping(\"/{id}\")\n    public User getUserById(@PathVariable Long id) {\n        return userService.getUserById(id);\n    }\n\n    @PostMapping\n    public User saveUser(@RequestBody User user) {\n        return userService.saveUser(user);\n    }\n\n    @DeleteMapping(\"/{id}\")\n    public void deleteUser(@PathVariable Long id) {\n        userService.deleteUser(id);\n    }\n}\n```",
+      "slide_type": "code",
+      "font_color": "#FFFFFF",
+      "font_size": 16,
+      "background_color": "#000000"
+    }
+  ]
+  
