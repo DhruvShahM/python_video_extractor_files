@@ -1,91 +1,72 @@
 [
-    {
-      "title": "Spring Boot Microservice Example",
-      "content": "A simple Spring Boot microservice with RESTful APIs, database interaction using JPA and H2, and optional service discovery using Eureka.",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 1: Create a Spring Boot Application",
-      "content": "Use Spring Initializr with dependencies: Spring Web, Spring Boot DevTools, Spring Data JPA, H2 Database, Eureka Client (optional).",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 2: Define the Microservice",
-      "content": "Create a simple User Microservice with CRUD operations.",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 3: User Entity - Explanation",
-      "content": "The User entity represents the model for the user data. It includes fields like id, name, and email and is mapped to a database table.",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 3: User Entity - Code",
-      "content": "```java\npackage com.example.userservice.model;\n\nimport jakarta.persistence.*;\nimport lombok.*;\n\n@Entity\n@Data\n@NoArgsConstructor\n@AllArgsConstructor\npublic class User {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    \n    private String name;\n    private String email;\n}\n```",
-      "slide_type": "code",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 4: Repository Layer - Explanation",
-      "content": "The repository layer acts as the data access layer, providing an interface to interact with the database using Spring Data JPA.",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 4: Repository Layer - Code",
-      "content": "```java\npackage com.example.userservice.repository;\n\nimport com.example.userservice.model.User;\nimport org.springframework.data.jpa.repository.JpaRepository;\n\npublic interface UserRepository extends JpaRepository<User, Long> {}\n```",
-      "slide_type": "code",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 5: Service Layer - Explanation",
-      "content": "The service layer contains business logic and acts as an intermediary between the repository and controller layers.",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 5: Service Layer - Code",
-      "content": "```java\npackage com.example.userservice.service;\n\nimport com.example.userservice.model.User;\nimport com.example.userservice.repository.UserRepository;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Service;\nimport java.util.List;\n\n@Service\npublic class UserService {\n    @Autowired\n    private UserRepository userRepository;\n\n    public List<User> getAllUsers() {\n        return userRepository.findAll();\n    }\n\n    public User getUserById(Long id) {\n        return userRepository.findById(id).orElse(null);\n    }\n\n    public User saveUser(User user) {\n        return userRepository.save(user);\n    }\n\n    public void deleteUser(Long id) {\n        userRepository.deleteById(id);\n    }\n}\n```",
-      "slide_type": "code",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 6: Controller Layer - Explanation",
-      "content": "The controller layer handles HTTP requests and maps them to service methods to process user data.",
-      "slide_type": "text",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    },
-    {
-      "title": "Step 6: Controller Layer - Code",
-      "content": "```java\npackage com.example.userservice.controller;\n\nimport com.example.userservice.model.User;\nimport com.example.userservice.service.UserService;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.web.bind.annotation.*;\n\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/users\")\npublic class UserController {\n    @Autowired\n    private UserService userService;\n\n    @GetMapping\n    public List<User> getAllUsers() {\n        return userService.getAllUsers();\n    }\n\n    @GetMapping(\"/{id}\")\n    public User getUserById(@PathVariable Long id) {\n        return userService.getUserById(id);\n    }\n\n    @PostMapping\n    public User saveUser(@RequestBody User user) {\n        return userService.saveUser(user);\n    }\n\n    @DeleteMapping(\"/{id}\")\n    public void deleteUser(@PathVariable Long id) {\n        userService.deleteUser(id);\n    }\n}\n```",
-      "slide_type": "code",
-      "font_color": "#FFFFFF",
-      "font_size": 16,
-      "background_color": "#000000"
-    }
-  ]
-  
+  {
+    "title": "Golang Data Types - Overview",
+    "content": "### Golang supports several built-in data types:\n- **Basic types**: `int`, `float64`, `string`, `bool`\n- **Composite types**: `array`, `slice`, `map`, `struct`\n- **Reference types**: `pointer`, `interface`, `channel`, `function`\n\nEach type is designed to optimize memory usage and performance.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Integer Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var age int = 25\n    var smallNumber int8 = 127\n    fmt.Println(\"Age:\", age)\n    fmt.Println(\"Small Number:\", smallNumber)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Floating-Point Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var price float64 = 99.99\n    var temperature float32 = 36.6\n    fmt.Println(\"Price:\", price)\n    fmt.Println(\"Temperature:\", temperature)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "String Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var name string = \"John Doe\"\n    var greeting = \"Hello, \" + name\n    fmt.Println(greeting)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Boolean Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var isActive bool = true\n    var hasAccess bool = false\n    fmt.Println(\"Is Active:\", isActive)\n    fmt.Println(\"Has Access:\", hasAccess)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Byte and Rune Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var b byte = 'A'\n    var r rune = '你'\n    fmt.Println(\"Byte:\", b)\n    fmt.Println(\"Rune:\", r)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Array Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var numbers [5]int = [5]int{1, 2, 3, 4, 5}\n    fmt.Println(\"Numbers:\", numbers)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Slice Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var nums = []int{10, 20, 30}\n    numbers := make([]int, 5)\n    fmt.Println(\"Nums:\", nums)\n    fmt.Println(\"Numbers:\", numbers)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Map Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var person map[string]int = map[string]int{\"Alice\": 30, \"Bob\": 25}\n    fmt.Println(\"Person Age:\", person)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Struct Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\ntype Person struct {\n    Name string\n    Age  int\n}\n\nfunc main() {\n    var p = Person{Name: \"Alice\", Age: 30}\n    fmt.Println(\"Person:\", p)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Pointer Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var num int = 10\n    var ptr *int = &num\n    fmt.Println(\"Number:\", num)\n    fmt.Println(\"Pointer Address:\", ptr)\n    fmt.Println(\"Pointer Value:\", *ptr)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Interface Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\ntype Shape interface {\n    Area() float64\n}\n\nfunc main() {\n    fmt.Println(\"Interface Example\")\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Channel Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    ch := make(chan int)\n    go func() { ch <- 5 }()\n    fmt.Println(\"Received:\", <-ch)\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Function Data Type - Example",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc add(a, b int) int {\n    return a + b\n}\n\nfunc main() {\n    var operation func(int, int) int = add\n    fmt.Println(\"Addition:\", operation(3, 5))\n}",
+    "slide_type": "code"
+  }
+]

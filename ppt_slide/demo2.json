@@ -1,0 +1,52 @@
+[
+    {
+        "title": "Introduction to Channels in Golang",
+        "content": "### What is a Channel?\nGolang में **Channel** एक communication mechanism है जो **goroutines** के बीच data share करने के लिए उपयोग किया जाता है। Channel के माध्यम से एक goroutine data भेज सकता है और दूसरी goroutine इसे receive कर सकती है।",
+        "slide_type": "text"
+    },
+    {
+        "title": "Channel Syntax",
+        "content": "```go\nch := make(chan int) // integer type का channel बनाना\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Types of Channels",
+        "content": "### Types of Channels in Golang:\n1. **Unbuffered Channel** - Data तभी भेजा और प्राप्त किया जा सकता है जब कोई goroutine इसे receive कर रहा हो।\n2. **Buffered Channel** - Data store करने के लिए buffer का उपयोग करता है, जिससे sender को wait नहीं करना पड़ता।",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example of Unbuffered Channel",
+        "content": "```go\npackage main\n\nimport (\n    \"fmt\"\n)\n\nfunc main() {\n    ch := make(chan string) // Unbuffered channel\n\n    // Goroutine\n    go func() {\n        ch <- \"Hello from Goroutine!\"\n    }()\n\n    msg := <-ch // Channel से message receive करना\n    fmt.Println(msg)\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Example of Buffered Channel",
+        "content": "```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    ch := make(chan int, 2) // Buffered channel with capacity 2\n\n    ch <- 10\n    ch <- 20\n\n    fmt.Println(<-ch) // 10\n    fmt.Println(<-ch) // 20\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Closing a Channel",
+        "content": "### How to Close a Channel?\nजब channel का उपयोग पूरा हो जाता है, तो उसे `close()` करके बंद किया जाता है।\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    ch := make(chan int, 2)\n\n    ch <- 1\n    ch <- 2\n\n    close(ch) // Channel बंद कर दिया\n\n    for val := range ch {\n        fmt.Println(val)\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Using Select with Channels",
+        "content": "### Handling Multiple Channels Using `select`\n\n`select` statement multiple channels को manage करता है और पहले उपलब्ध data को process करता है।\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    ch1 := make(chan string)\n    ch2 := make(chan string)\n\n    go func() {\n        ch1 <- \"Data from ch1\"\n    }()\n\n    go func() {\n        ch2 <- \"Data from ch2\"\n    }()\n\n    select {\n    case msg1 := <-ch1:\n        fmt.Println(\"Received:\", msg1)\n    case msg2 := <-ch2:\n        fmt.Println(\"Received:\", msg2)\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Channel Deadlock Problem",
+        "content": "### Avoiding Deadlocks\nयदि कोई goroutine channel में data भेजता है लेकिन कोई उसे receive नहीं कर रहा, तो **deadlock** हो जाता है।\n\n#### Example of Deadlock:\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    ch := make(chan int)\n\n    ch <- 5 // Deadlock! कोई भी data receive नहीं कर रहा\n    fmt.Println(<-ch)\n}\n```\n\n#### Solution:\nChannel से data send और receive करने के लिए हमेशा एक goroutine का उपयोग करें।",
+        "slide_type": "text"
+    },
+    {
+        "title": "Using WaitGroup with Channels",
+        "content": "### Waiting for Goroutines Using `sync.WaitGroup`\n\n```go\npackage main\n\nimport (\n    \"fmt\"\n    \"sync\"\n)\n\nfunc worker(wg *sync.WaitGroup, ch chan int) {\n    defer wg.Done()\n    ch <- 100\n}\n\nfunc main() {\n    var wg sync.WaitGroup\n    ch := make(chan int)\n\n    wg.Add(1)\n    go worker(&wg, ch)\n\n    fmt.Println(<-ch) // 100\n    wg.Wait()\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Conclusion",
+        "content": "### Summary\n- **Channels** goroutines के बीच data share करने के लिए उपयोग किए जाते हैं।\n- **Buffered और Unbuffered Channels** data भेजने और प्राप्त करने के तरीके को नियंत्रित करते हैं।\n- `select` statement multiple channels को manage करता है।\n- **Channel Deadlock** से बचने के लिए send और receive को सही से manage करें।",
+        "slide_type": "text"
+    }
+]
