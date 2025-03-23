@@ -48,5 +48,24 @@
         "title": "Conclusion",
         "content": "### Summary\n- **Channels** goroutines के बीच data share करने के लिए उपयोग किए जाते हैं।\n- **Buffered और Unbuffered Channels** data भेजने और प्राप्त करने के तरीके को नियंत्रित करते हैं।\n- `select` statement multiple channels को manage करता है।\n- **Channel Deadlock** से बचने के लिए send और receive को सही से manage करें।",
         "slide_type": "text"
+    },
+    {
+        "title": "Go vs React - Feature Comparison",
+        "slide_type": "table",
+        "content": [
+            {"Feature": "Type", "Go (Golang)": "Backend Programming Language", "React": "Frontend JavaScript Library"},
+            {"Feature": "Use Case", "Go (Golang)": "Backend Development, APIs, Microservices, System Programming", "React": "UI Development, Single Page Applications (SPA)"},
+            {"Feature": "Performance", "Go (Golang)": "High (compiled, statically typed)", "React": "Depends on Virtual DOM, optimized for UI rendering"},
+            {"Feature": "Learning Curve", "Go (Golang)": "Moderate (requires understanding of concurrency, pointers)", "React": "Easy-Moderate (requires JavaScript & JSX)"},
+            {"Feature": "Concurrency", "Go (Golang)": "Excellent (goroutines, channels)", "React": "Not natively concurrent (relies on JavaScript event loop)"},
+            {"Feature": "Scalability", "Go (Golang)": "High (lightweight, efficient memory usage)", "React": "Moderate (scales well with modular components)"},
+            {"Feature": "Development Speed", "Go (Golang)": "Faster for backend services", "React": "Faster for UI with reusable components"},
+            {"Feature": "Ecosystem", "Go (Golang)": "Rich backend tools (Gin, Echo, Fiber)", "React": "Huge ecosystem with libraries like Redux, Next.js"},
+            {"Feature": "State Management", "Go (Golang)": "Not required (handled at backend)", "React": "Requires state management (Context API, Redux, Recoil)"},
+            {"Feature": "Syntax", "Go (Golang)": "Simple, statically typed", "React": "JSX (HTML-like syntax inside JavaScript)"},
+            {"Feature": "Deployment", "Go (Golang)": "Compiled to a single binary (easy deployment)", "React": "Requires build tools like Webpack, Vite"},
+            {"Feature": "Community Support", "Go (Golang)": "Strong, backed by Google", "React": "Very strong, backed by Meta (Facebook)"},
+            {"Feature": "Popular Use Cases", "Go (Golang)": "Web servers, APIs, CLI tools, microservices, cloud applications", "React": "Web applications, dashboards, PWA, interactive UIs"}
+        ]
     }
 ]
