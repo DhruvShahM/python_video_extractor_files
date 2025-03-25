@@ -1,0 +1,38 @@
+title,content,slide_type,font_color,font_size,background_color
+Introduction,"? Loosely Coupled Code – Improves maintainability and scalability.
+? Easier Testing – Dependencies can be easily mocked for unit testing.
+? Better Code Reusability – Components can be reused independently.
+? Reduces Boilerplate Code – No need for manual object creation.",text,#000000,16,#FFFFFF
+Code Example,"import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+class Engine {
+    public void start() {
+        System.out.println(""Engine is starting..."");
+    }
+}
+
+@Component
+class Car {
+    private Engine engine;
+
+    @Autowired
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void drive() {
+        engine.start();
+        System.out.println(""Car is moving..."");
+    }
+}",code,#FFFFFF,12,#000000
+Conclusion,"The splice method in JavaScript modifies an array by removing, replacing, or adding elements.
+
+Syntax: array.splice(start, deleteCount, item1, item2, ...)
+Explanation (using the example):
+arr.splice(2, 2, 6, 7);
+Starts at index 2 (3 in the array).
+Removes 2 elements (3 and 4).
+Inserts 6 and 7 at the same position.
+Final array: [1, 2, 6, 7, 5].",text,#000000,16,#FFFFFF

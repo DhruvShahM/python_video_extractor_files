@@ -1,0 +1,32 @@
+{
+    "videos": [
+        {
+            "videoFile": "C:/Users/Dhruv/Videos/quiz10.mp4",
+            "title": "My Scheduled YouTube Video",
+            "description": "This video is scheduled using Python automation!",
+            "tags": [
+                "automation",
+                "YouTube API",
+                "Python"
+            ],
+            "categoryId": "28",
+            "privacyStatus": "private",
+            "_scheduledTime": "2025-03-26T10:00:00Z",
+            "madeForKids": false,
+            "ageRestriction": false
+        },
+        {
+            "videoFile": "C:/Users/dhruv/Videos/Example35.mp4",
+            "title": "Golang Constants - Explained",
+            "description": "Learn about constants in Golang.",
+            "tags": [
+                "#GolangConstants",
+                "#Coding",
+                "#HindiTutorial"
+            ],
+            "categoryId": "28",
+            "privacyStatus": "private",
+            "madeForKids": false
+        }
+    ]
+}
