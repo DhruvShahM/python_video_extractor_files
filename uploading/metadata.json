@@ -1,32 +1,30 @@
 {
     "videos": [
         {
-            "videoFile": "C:/Users/Dhruv/Videos/quiz10.mp4",
-            "title": "My Scheduled YouTube Video",
-            "description": "This video is scheduled using Python automation!",
-            "tags": [
-                "automation",
-                "YouTube API",
-                "Python"
-            ],
-            "categoryId": "28",
+            "videoFile": "C:/Users/dhruv/Videos/2.mp4",
+            "title": "🚀 Master YouTube Automation with Python! (Step-by-Step Guide)",
+            "description": "Learn how to automate YouTube video uploads using Python and the YouTube API. 🚀\n\n🔥 Topics Covered:\n✔️ Automate video uploads\n✔️ Add custom thumbnails\n✔️ Schedule video publishing\n✔️ Add videos to playlists\n\n🔔 Subscribe for more Python tutorials!\n\n#Python #YouTubeAPI #Automation #AI",
+            "tags": ["Python", "YouTube API", "Automation", "YouTube Bot", "AI"],
+            "categoryName": "Education",
             "privacyStatus": "private",
-            "_scheduledTime": "2025-03-26T10:00:00Z",
+            "thumbnail": "C:/Users/dhruv/Videos/thumbnail.png",
+            "playlistName": "Golang Shorts | Golang Secrets: Short & Sharp",
+            "publishAt": "2025-04-01 18:30:00", 
             "madeForKids": false,
             "ageRestriction": false
-        },
-        {
-            "videoFile": "C:/Users/dhruv/Videos/Example35.mp4",
-            "title": "Golang Constants - Explained",
-            "description": "Learn about constants in Golang.",
-            "tags": [
-                "#GolangConstants",
-                "#Coding",
-                "#HindiTutorial"
-            ],
-            "categoryId": "28",
+          },
+          {
+            "videoFile": "C:/Users/dhruv/Videos/quiz10.mp4",
+            "title": "🚀 Master Coding Automation with Python! (Step-by-Step Guide)",
+            "description": "Learn how to automate Coding video uploads using Python and the Coding API. 🚀\n\n🔥 Topics Covered:\n✔️ Automate video uploads\n✔️ Add custom thumbnails\n✔️ Schedule video publishing\n✔️ Add videos to playlists\n\n🔔 Subscribe for more Python tutorials!\n\n#Python #CodingAPI #Automation #AI",
+            "tags": ["Python", "Coding API", "Automation", "Coding Bot", "AI"],
+            "categoryName": "Education",
             "privacyStatus": "private",
-            "madeForKids": false
-        }
-    ]
+            "thumbnail": "C:/Users/dhruv/Videos/thumbnail.png",
+            "playlistName": "Golang Shorts | Golang Secrets: Short & Sharp",
+            "publishAt": "2025-04-01 18:30:00", 
+            "madeForKids": false,
+            "ageRestriction": false
+          }
+        ]
 }
