@@ -6,7 +6,7 @@ import pytz
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google_auth_oauthlib.flow import InstalledAppFlow
-
+from google.oauth2.credentials import Credentials
 # Constants
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googleapis.com/auth/youtube.force-ssl"]
 CLIENT_SECRET_FILE = "C:/Users/dhruv/Videos/Video_Extractor_Python_Files/python_video_extractor_files/uploading/client_secret.json"
@@ -29,11 +29,22 @@ CATEGORY_MAP = {
     "Nonprofits & Activism": "29"
 }
 
+# def get_authenticated_service():
+#     """Authenticate and return a YouTube API service instance."""
+#     flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
+#     credentials = flow.run_local_server(port=0)
+#     return build("youtube", "v3", credentials=credentials)
+
 def get_authenticated_service():
-    """Authenticate and return a YouTube API service instance."""
-    flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
-    credentials = flow.run_local_server(port=0)
-    return build("youtube", "v3", credentials=credentials)
+    creds = None
+    if os.path.exists("token.json"):
+        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    if not creds or not creds.valid:
+        flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
+        creds = flow.run_local_server(port=0)
+        with open("token.json", "w") as token:
+            token.write(creds.to_json())
+    return build("youtube", "v3", credentials=creds)
 
 def convert_ist_to_utc(ist_time_str):
     """Convert IST time string (YYYY-MM-DD HH:MM:SS) to UTC in RFC 3339 format."""
