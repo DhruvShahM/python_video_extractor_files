@@ -7,11 +7,12 @@ def generate_prompts(data):
     prompt_template = ("`Generate a YouTube script in Hinglish on {object}, "
                        "The script should jump straight into the main content without an intro or conclusion. Keep it engaging, "
                        "conversational, and provide clear explanations with examples where needed. Use a mix of Hindi and English "
-                       "to keep it natural and easy to follow." )
+                       "to keep it natural and easy to follow.Don't include any code in the script—just explanations" )
     
     for item in data:
-        object_data = {"title": item["title"], "content": item["content"]}
-        prompts.append(prompt_template.format(object=json.dumps(object_data, ensure_ascii=False)))
+        if item.get("slide_type") == "text" or item.get("slide_type") == "table":
+            object_data = {"title": item["title"], "content": item["content"]}
+            prompts.append(prompt_template.format(object=json.dumps(object_data, ensure_ascii=False)))
     
     return prompts
 
