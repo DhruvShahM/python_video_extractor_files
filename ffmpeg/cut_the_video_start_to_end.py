@@ -39,10 +39,14 @@ def cut_video():
 
         # Cut video using ffmpeg
         print("⏳ Processing video... Please wait.")
+        # cmd_cut = [
+        #     "ffmpeg", "-i", input_path, "-vf", f"select='not(between(t,{start_time},{end_time}))',setpts=N/FRAME_RATE/TB",
+        #     "-af", f"aselect='not(between(t,{start_time},{end_time}))',asetpts=N/SR/TB", "-c:v", "libx264", "-c:a", "aac", output_path
+        # ]
         cmd_cut = [
-            "ffmpeg", "-i", input_path, "-vf", f"select='not(between(t,{start_time},{end_time}))',setpts=N/FRAME_RATE/TB",
-            "-af", f"aselect='not(between(t,{start_time},{end_time}))',asetpts=N/SR/TB", "-c:v", "libx264", "-c:a", "aac", output_path
+         "ffmpeg", "-i", input_path, "-ss", str(start_time), "-to", str(end_time), "-c", "copy", output_path
         ]
+
         subprocess.run(cmd_cut, check=True)
         
         print(f"✅ Video saved successfully: {output_path}")
