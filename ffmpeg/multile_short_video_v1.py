@@ -20,37 +20,10 @@ output_height = 1920
 ffmpeg_path = "ffmpeg"
 ffprobe_path = "ffprobe"  # Use full path if needed
 
-# Blur filter
-# filter_complex = (
-#     "split=2[main][bg];"
-#     f"[bg]scale={output_width}:{output_height}:force_original_aspect_ratio=increase,"
-#     f"crop={output_width}:{output_height},boxblur=10:1[blurred];"
-#     "[blurred][main]overlay=(W-w)/2:(H-h)/2"
-# )
+# Simple layout for centering the video
 filter_complex = (
-    "split=2[main][blurred];"
-    "[blurred]scale=1080:1920:force_original_aspect_ratio=increase,"
-    "crop=1080:1920,"
-    "gblur=sigma=60,boxblur=20[bg];"
-    "[main]scale=-1:ih[fg];"
-    "[bg][fg]overlay=(W-w)/2:(H-h)/2"
+    f"scale={output_width}:-1,setsar=1,pad={output_width}:{output_height}:(ow-iw)/2:(oh-ih)/2"
 )
-# filter_complex = (
-#     "split=2[main][blurred];"
-#     "[blurred]scale=1080:1920:force_original_aspect_ratio=increase,"
-#     "crop=1080:1920,"
-#     "gblur=sigma=60,boxblur=20[bg];"
-#     "[main]scale=w=iw*0.85:h=-1,"
-#     "pad=1080:1920:(ow-iw)/2:(oh-ih)/2:color=black[fg];"
-#     "[bg][fg]overlay=0:0"
-# )
-
-
-
-
-
-
-
 
 def get_video_duration(input_path):
     """Returns duration in seconds using ffprobe"""
@@ -82,7 +55,7 @@ for input_path in file_paths:
 
     input_dir, input_file = os.path.split(input_path)
     filename, ext = os.path.splitext(input_file)
-    output_file = os.path.join(input_dir, f"{filename}_short.mp4")
+    output_file = os.path.join(input_dir, f"{filename}_centered.mp4")
 
     command = [
         ffmpeg_path,
@@ -98,7 +71,7 @@ for input_path in file_paths:
         output_file
     ]
 
-    print(f"🎬 Processing: {input_file} → {filename}_short.mp4 (duration: {max_duration}s)")
+    print(f"🎬 Processing: {input_file} → {filename}_centered.mp4 (duration: {max_duration}s)")
     result = subprocess.run(command, capture_output=True, text=True)
 
     if result.returncode == 0:

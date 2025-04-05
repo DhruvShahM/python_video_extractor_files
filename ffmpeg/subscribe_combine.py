@@ -66,3 +66,7 @@ for video in selected_videos:
     merge_videos(video, single_video, output_folder)
 
 print("🎉 All videos merged successfully!")
+
+
+# subscribe video path
+# C:\Users\dhruv\OneDrive\Resueable_Videos\Shorts
