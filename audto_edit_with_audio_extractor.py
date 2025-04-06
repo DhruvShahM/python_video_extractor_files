@@ -1,13 +1,12 @@
 import subprocess
 import tkinter as tk
 from tkinter import filedialog
-from moviepy.video.io.VideoFileClip import VideoFileClip
+import os
 
 def process_video():
     root = tk.Tk()
-    root.withdraw()  # Hide the main window
+    root.withdraw()
 
-    # Open file dialog to select a video file
     file_path = filedialog.askopenfilename(
         title="Select a Video File",
         filetypes=[("Video Files", "*.mkv *.mp4 *.mov *.avi *.flv")]
@@ -17,28 +16,47 @@ def process_video():
         print("No file selected. Exiting...")
         return
 
-    # Step 1: Auto-edit the video
     output_video = file_path.rsplit(".", 1)[0] + "_edited.mp4"
-    command = ["auto-editor", file_path, "-o", output_video]
+    output_audio = output_video.rsplit(".", 1)[0] + ".wav"
+
+    # Step 1: Auto-edit video
+    command = [
+        "auto-editor", file_path,
+        "-o", output_video,
+        "--no-open",
+        "--frame-rate", "30",
+        "--silent-speed", "99999"
+    ]
 
     try:
         subprocess.run(command, check=True)
-        print(f"Final video exported successfully: {output_video}")
+        print(f"Final video exported: {output_video}")
     except subprocess.CalledProcessError as e:
         print(f"Error during video editing: {e}")
         return
 
-    # Step 2: Extract audio from the edited video
-    output_audio = output_video.rsplit(".", 1)[0] + ".wav"
-    
-    try:
-        video = VideoFileClip(output_video)  # Load the edited video
-        audio = video.audio
-        audio.write_audiofile(output_audio, codec="pcm_s16le")
-        print(f"Audio extracted and saved as: {output_audio}")
-        video.close()
-    except Exception as e:
-        print(f"Error during audio extraction: {e}")
+    # Step 2: Extract audio using ffmpeg
+    ffmpeg_command = [
+        "ffmpeg", "-i", output_video,
+        "-vn",
+        "-acodec", "pcm_s16le",
+        output_audio
+    ]
 
-# Run the function
+    try:
+        subprocess.run(ffmpeg_command, check=True)
+        print(f"Audio extracted: {output_audio}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error extracting audio: {e}")
+        return
+
+    # Step 3: Clean up the WAV file
+    try:
+        if os.path.exists(output_audio):
+            os.remove(output_audio)
+            print(f"Temporary audio file deleted: {output_audio}")
+    except Exception as e:
+        print(f"Error deleting WAV file: {e}")
+
+# Run
 process_video()
