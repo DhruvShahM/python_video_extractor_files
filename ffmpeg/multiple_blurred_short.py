@@ -21,20 +21,20 @@ ffmpeg_path = "ffmpeg"
 ffprobe_path = "ffprobe"  # Use full path if needed
 
 # Blur filter
-# filter_complex = (
-#     "split=2[main][bg];"
-#     f"[bg]scale={output_width}:{output_height}:force_original_aspect_ratio=increase,"
-#     f"crop={output_width}:{output_height},boxblur=10:1[blurred];"
-#     "[blurred][main]overlay=(W-w)/2:(H-h)/2"
-# )
 filter_complex = (
-    "split=2[main][blurred];"
-    "[blurred]scale=1080:1920:force_original_aspect_ratio=increase,"
-    "crop=1080:1920,"
-    "gblur=sigma=60,boxblur=20[bg];"
-    "[main]scale=-1:ih[fg];"
-    "[bg][fg]overlay=(W-w)/2:(H-h)/2"
+    "split=2[main][bg];"
+    f"[bg]scale={output_width}:{output_height}:force_original_aspect_ratio=increase,"
+    f"crop={output_width}:{output_height},boxblur=10:1[blurred];"
+    "[blurred][main]overlay=(W-w)/2:(H-h)/2"
 )
+# filter_complex = (
+#     "split=2[main][blurred];"
+#     "[blurred]scale=1080:1920:force_original_aspect_ratio=increase,"
+#     "crop=1080:1920,"
+#     "gblur=sigma=60,boxblur=20[bg];"
+#     "[main]scale=-1:ih[fg];"
+#     "[bg][fg]overlay=(W-w)/2:(H-h)/2"
+# )
 # filter_complex = (
 #     "split=2[main][blurred];"
 #     "[blurred]scale=1080:1920:force_original_aspect_ratio=increase,"
