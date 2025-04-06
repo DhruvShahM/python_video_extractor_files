@@ -1,0 +1,98 @@
+{
+  "videos": [
+    {
+      "videoFile": "C:/Users/dhruv/Videos/video_selected/short_new/1_output_centered_merged.mp4",
+      "title": "🤔 What is Dependency Injection in Spring? | Java Explained Simply 🧠",
+      "description": "In this short, understand the concept of **Dependency Injection (DI)** in the Spring Framework. \n\n🌟 **Key Concepts:**\n- What is DI?\n- Why use Dependency Injection?\n- Benefits of DI (loose coupling, maintainability)\n- Types of injection in Spring: Constructor, Setter, Field\n\n📘 Must-watch for Java beginners and Spring Boot developers!\n\n#SpringBoot #DependencyInjection #JavaBasics #SpringFramework #LooseCoupling #JavaTips",
+      "tags": [
+        "Spring Boot",
+        "Java",
+        "Dependency Injection",
+        "Spring Framework",
+        "Loose Coupling",
+        "Java Basics",
+        "Spring Tutorial"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "playlistName": "Spring Boot Interview Shorts | Java | OOPS",
+      "publishAt": "2025-04-07 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/video_selected/short_new/2_centered_merged.mp4",
+      "title": "😵 Tight Coupling Explained | Why Dependency Injection is Important in Java 🚫",
+      "description": "Without Dependency Injection, your code becomes tightly coupled and hard to manage. \n\n👎 In this short:\n- What is tight coupling?\n- Real-world problems caused by creating dependencies inside a class\n- The need for flexibility and testing\n\n💡 Watch how Spring DI can fix this!\n\n#Java #SpringBoot #TightlyCoupled #DependencyInjection #CleanCode",
+      "tags": [
+        "Tightly Coupled Code",
+        "Java",
+        "Spring Boot",
+        "Dependency Injection",
+        "Code Smells",
+        "Software Design"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "playlistName": "Spring Boot Interview Shorts | Java | OOPS",
+      "publishAt": "2025-04-09 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/video_selected/short_new/3_output_centered_merged.mp4",
+      "title": "❌ Java Example Without Dependency Injection | Why It’s Bad 🧱",
+      "description": "Here's what tightly coupled code looks like in Java. \n\n🚗 Example:\n- A `Car` class creates its own `Engine` dependency\n- Hard to test or replace components\n\n👨‍💻 This is what DI aims to solve in Spring!\n\n#SpringBoot #Java #TightCoupling #CodeExample #DependencyInjection",
+      "tags": [
+        "Java Example",
+        "Tight Coupling",
+        "Spring Boot",
+        "Dependency Injection",
+        "Code Problems"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "playlistName": "Spring Boot Interview Shorts | Java | OOPS",
+      "publishAt": "2025-04-11 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/video_selected/short_new/4_output_centered_merged.mp4",
+      "title": "✅ Benefits of Using Dependency Injection | Spring Boot Simplified 🚀",
+      "description": "Learn why **Dependency Injection (DI)** is the solution for modern Java applications.\n\n✨ Benefits:\n- Loose coupling\n- Testable code\n- Scalable architecture\n\nSpring Boot makes it easy to implement DI in different ways.\n\n#SpringBoot #DependencyInjection #JavaTips #CleanArchitecture #LooseCoupling",
+      "tags": [
+        "Spring Boot",
+        "Dependency Injection",
+        "Java Tips",
+        "Clean Architecture",
+        "Testability",
+        "Scalable Code"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "playlistName": "Spring Boot Interview Shorts | Java | OOPS",
+      "publishAt": "2025-04-13 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/video_selected/short_new/5_output_centered_merged.mp4",
+      "title": "📥 Field Injection in Spring using @Autowired | Java Simplified 🧩",
+      "description": "Here's how you can use field injection in Spring with `@Autowired`.\n\n🔍 Highlights:\n- Easiest way to inject dependencies\n- Direct use in the class\n\n⚠️ Best used when field-level visibility is okay and testing isn't a concern.\n\n#SpringBoot #FieldInjection #Autowired #Java #DependencyInjection",
+      "tags": [
+        "Field Injection",
+        "Autowired",
+        "Spring Boot",
+        "Java",
+        "Dependency Injection"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "playlistName": "Spring Boot Interview Shorts | Java | OOPS",
+      "publishAt": "2025-04-17 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false
+    }
+  ]
+}

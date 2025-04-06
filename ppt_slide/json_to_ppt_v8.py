@@ -13,6 +13,8 @@ import textwrap
 import markdown2
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_PARAGRAPH_ALIGNMENT
+from pptx.util import Cm
+
 
 THEMES = {
     "Light": {"bg_color": "#FFFFFF", "text_color": "#000000"},
@@ -111,6 +113,8 @@ class PPTCreatorApp:
 
             if slides_data:
                 self.prs = Presentation()  # Create a new presentation for each file
+                self.prs.slide_width = Cm(25.4)
+                self.prs.slide_height = Cm(14.288)
                 self.add_title_slide(slides_data[0].get("title", "Presentation"))
 
                 theme = THEMES.get(self.theme_var.get(), THEMES["Light"])
