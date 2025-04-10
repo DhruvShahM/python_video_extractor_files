@@ -1,0 +1,26 @@
+{
+    "videos": [
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/JavaScript_2025_Shorts/q11.mp4",
+            "title": "Quiz-11: STOP Using `this` Wrong in JavaScript! (Most Devs Fail 😱)",
+            "description": "Most developers use `this` wrong in JavaScript! 😱 Learn how to fix it with `bind()` in just 60 seconds!\n\n\uD83D\uDCCC **Topics Covered:**\n✅ JavaScript `this` keyword explained\n✅ How `bind()` solves `this` confusion\n✅ Real-world examples to master `bind()`\n\n\uD83D\uDCA1 **Have you ever been confused by `this` in JavaScript? Comment YES or NO below!**\n\n#JavaScript #bindMethod #thisKeyword #JSShorts #WebDevelopment #CodingQuiz",
+            "tags": [
+                "JavaScript",
+                "bind method",
+                "JavaScript this keyword",
+                "fix this in JavaScript",
+                "JavaScript tutorial",
+                "JS tricks",
+                "Web Development",
+                "JavaScript interview questions"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "private",
+            "thumbnail": "C:/Users/dhruv/Videos/thumbnail.png",
+            "publishAt": "2025-04-01 18:30:00",
+            "madeForKids": false,
+            "ageRestriction": false,
+            "playlistName": "JavaScript Interview Questions Shorts | JavaScript Coding Shorts"
+        }
+    ]
+}

@@ -1,23 +1,11 @@
-import os
-from google_auth_oauthlib.flow import InstalledAppFlow
+from gpt4all import GPT4All
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+# Correct model path
+model_path = r"C:\models\demo.gguf"
 
-def authenticate(account_name):
-    """
-    Authenticates a specific Google account and stores its credentials separately.
-    """
-    creds_filename = f"token_{account_name}.json"  # Unique token file for each account
+# Load the model correctly
+model = GPT4All(model_path, allow_download=False, device="cpu")
 
-    flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", SCOPES)
-    credentials = flow.run_local_server(port=8080, prompt="consent")
-
-    # Save credentials for reuse
-    with open(creds_filename, "w") as token_file:
-        token_file.write(credentials.to_json())
-
-    print(f"Authentication successful for {account_name}!")
-
-# Manually select an account
-account_choice = input("Enter account name (e.g., account1, account2): ").strip()
-authenticate(account_choice)
+# Test a prompt
+response = model.generate("Python में variables क्या होते हैं?")
+print(response)

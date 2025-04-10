@@ -1,0 +1,33 @@
+{
+    "videos": [
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/1_merged_video_edited.mp4",
+            "title": "🔥 What is Go (Golang)? | History, Features & Use Cases Explained! 💻🚀",
+            "description": "🎯 In this video, you'll learn everything you need to know about the Go programming language (aka Golang):\n\n✅ What is Go?\n✅ Who developed it and why?\n✅ Key features that make Go powerful and modern\n✅ History, origin, and real-world motivation\n✅ Bonus: Hello World code snippet 🧠\n\n📌 Topics Covered:\n- Introduction to Go\n- History & Creators (Ken Thompson, Rob Pike, Robert Griesemer)\n- Why Go was created at Google\n- Core features: Concurrency, Simplicity, Fast Compilation\n- Code snippet walkthrough\n\n🔗 Follow for more tech tutorials!\n\n#GoLang #GoProgramming #BackendDevelopment #TechTutorial #Google #KenThompson #Goroutines #Microservices #Programming #LearnToCode",
+            "tags": [
+              "Go",
+              "Golang",
+              "Go Programming Language",
+              "Learn Go",
+              "Go Features",
+              "Go for Beginners",
+              "Ken Thompson",
+              "Rob Pike",
+              "Go at Google",
+              "Golang Tutorial",
+              "Backend Development",
+              "Microservices",
+              "Concurrency",
+              "Fast Compilation",
+              "Goroutines"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/youtube_thumbnail.jpg",
+            "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews",
+            "publishAt": "2025-04-10 10:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+          }
+        ]
+}

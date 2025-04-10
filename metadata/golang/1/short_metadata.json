@@ -1,0 +1,130 @@
+{
+    "videos": [
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/shorts/1.1_output_final_merged.mp4",
+            "title": "📘 What is Golang? | Fast & Powerful Language Explained in 1 Min!",
+            "description": "🔥 Learn what Go (Golang) is in just 1 minute!\n\n✅ Open-source, super-fast, and built by Google\n✅ Designed for modern backend, cloud & system-level development\n✅ Compiled, clean, and concurrency-ready\n\n🎯 Perfect for interviews and quick tech revisions!\n\n#golang #interviewprep #backenddevelopment #shorts #codingtips #goprogramming",
+            "tags": [
+                "golang",
+                "go language",
+                "google go",
+                "interview questions",
+                "backend development",
+                "shorts",
+                "programming language"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/YourName/Videos/thumbnails/go_intro.png",
+            "playlistName": "Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast",
+            "publishAt": "2025-04-12 12:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+        },
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/shorts/2.1_output_final_merged.mp4",
+            "title": "👨‍💻 Who Created Golang? Meet the Legends Behind Go!",
+            "description": "🤓 Curious about who created Golang?\n\n👨‍💻 Robert Griesemer, Rob Pike & Ken Thompson\n💡 Born at Google in 2007\n🚀 Open sourced in 2009\n\n📌 Learn the story in under a minute!\n#golang #kenThompson #programminglegends #interviewshorts #codingfacts",
+            "tags": [
+                "golang",
+                "go programming",
+                "rob pike",
+                "ken thompson",
+                "google",
+                "shorts",
+                "interview questions"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/YourName/Videos/thumbnails/go_creators.png",
+            "playlistName": "Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast",
+            "publishAt": "2025-04-14 12:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+        },
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/shorts/3.1_output_final_merged.mp4",
+            "title": "💭 Why Was Golang Created? (Real Engineering Problems Solved!)",
+            "description": "📌 Why did Google create Go?\n\n⚙️ Slow compilation in C++?\n🚫 Lack of concurrency in Java & Python?\n✅ Go = Simple, Fast, and Concurrent\n\n💬 Learn the real-world motivation in this quick video!\n\n#golang #goprogramming #interviewprep #shorts #backenddevelopment",
+            "tags": [
+                "golang",
+                "go language",
+                "concurrency",
+                "google engineers",
+                "tech history",
+                "interview question",
+                "shorts"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/YourName/Videos/thumbnails/go_motivation.png",
+            "playlistName": "Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast",
+            "publishAt": "2025-04-15 12:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+        },
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/shorts/4.1_output_final_merged.mp4",
+            "title": "✨ Key Features of Golang in 60 Seconds!",
+            "description": "⚡ Explore the power of Golang in just 60 seconds!\n\n✅ Fast Compilation\n✅ Built-in Concurrency (Goroutines)\n✅ Garbage Collection\n✅ Simplicity & Clean Syntax\n✅ Cross-platform & Rich Standard Library\n\n🎓 Great for interviews & dev quick tips!\n\n#golang #gofeatures #programminglanguages #interviewshorts #codingtips",
+            "tags": [
+                "golang",
+                "go programming",
+                "key features",
+                "gofeatures",
+                "interview",
+                "techshorts",
+                "backend"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/YourName/Videos/thumbnails/go_features.png",
+            "playlistName": "Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast",
+            "publishAt": "2025-04-16 12:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+        },
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/shorts/5.1_output_final_merged.mp4",
+            "title": "👋 Hello World in Golang! (Simple & Clean 🧼)",
+            "description": "📌 Learn how to write your first Go program!\n\n💻 Print \"Hello, World!\" in just 3 lines\n🔍 Understand `main`, `fmt`, and package structure\n\n📽️ Quick tutorial for interview prep & beginners!\n\n#golang #helloworld #goprogramming #shorts #interviewquestions",
+            "tags": [
+                "golang",
+                "go hello world",
+                "first program",
+                "interview code",
+                "go syntax",
+                "programming basics",
+                "shorts"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/YourName/Videos/thumbnails/go_helloworld.png",
+            "playlistName": "Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast",
+            "publishAt": "2025-04-18 12:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+        },
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/1/shorts/6.1_output_final_merged.mp4",
+            "title": "🔍 Go at a Glance: All You Need to Know in 1 Slide!",
+            "description": "📊 Here's a quick table summary of Golang:\n\n🧠 Compiled & Statically Typed\n🛠️ Created by legends at Google\n⚡ Uses Goroutines for concurrency\n🌐 Ideal for web servers & microservices\n\n📌 Essential for interviews & quick revisions!\n\n#golang #shorts #techfacts #goprogramming #interviewtips",
+            "tags": [
+                "golang",
+                "go overview",
+                "interview summary",
+                "go table",
+                "shorts",
+                "backend tech",
+                "go features"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/YourName/Videos/thumbnails/go_glance.png",
+            "playlistName": "Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast",
+            "publishAt": "2025-04-19 12:30:00",
+            "madeForKids": false,
+            "ageRestriction": false
+        }
+    ]
+}

@@ -11,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googleapis.com/auth/youtube.force-ssl"]
 CLIENT_SECRET_FILE = "C:/Users/dhruv/Videos/Video_Extractor_Python_Files/python_video_extractor_files/uploading/client_secret.json"
-METADATA_FILE = "C:/Users/dhruv/Videos/Video_Extractor_Python_Files/python_video_extractor_files/uploading/metadata.json"
+METADATA_FILE = "C:/Users/dhruv/Videos/Video_Extractor_Python_Files/python_video_extractor_files/uploading/golang/1/metadata.json"
 CATEGORY_MAP = { "Film & Animation": "1", "Autos & Vehicles": "2", "Music": "10", "Pets & Animals": "15", "Sports": "17", "Travel & Events": "19", "Gaming": "20", "People & Blogs": "22", "Comedy": "23", "Entertainment": "24", "News & Politics": "25", "Howto & Style": "26", "Education": "27", "Science & Technology": "28", "Nonprofits & Activism": "29" }
 
 def get_authenticated_service():

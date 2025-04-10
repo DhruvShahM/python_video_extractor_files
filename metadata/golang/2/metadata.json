@@ -1,0 +1,33 @@
+{
+    "videos": [
+        {
+            "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/2_merged_video.mp4",
+            "title": "🚀 Top 14 Key Features of Golang Explained | Master Go Language Fast! 💻",
+            "description": "🔥 Unlock the power of Go (Golang) with this in-depth breakdown of its 14 most powerful features!\n\nIn this video, you’ll learn:\n\n✅ Why Go is perfect for cloud-native development\n✅ How Goroutines make concurrency effortless\n✅ Static typing benefits for reliable software\n✅ Go vs Python & Java - Which one wins?\n✅ Rich standard library for rapid development\n✅ How Go handles memory safely with GC\n✅ The magic of interface-based design\n✅ Why developers LOVE Go for microservices\n\n🧠 Whether you’re a beginner or pro, this is your ultimate guide to understanding why Golang is one of the fastest-growing languages in the world!\n\n📌 Don't forget to LIKE 👍, SUBSCRIBE 🔔 and SHARE 📤 if you found this helpful!\n\n#golang #goprogramming #softwaredevelopment #backenddeveloper #microservices #devtools #cloudnative #learnprogramming #techstack #interviewprep #programminglanguage",
+            "tags": [
+              "golang",
+              "golang tutorial",
+              "go language features",
+              "go vs python",
+              "go vs java",
+              "why learn golang",
+              "go language explained",
+              "backend development",
+              "cloud native",
+              "concurrency",
+              "goroutines",
+              "microservices",
+              "go interview questions",
+              "go programming language",
+              "software development"
+            ],
+            "categoryName": "Education",
+            "privacyStatus": "public",
+            "thumbnail": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/thumbnail.png",
+            "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews",
+            "publishAt": "2025-04-20 12:00:00",
+            "madeForKids": false,
+            "ageRestriction": false
+          }          
+        ]
+}
