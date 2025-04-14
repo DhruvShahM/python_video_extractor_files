@@ -86,11 +86,11 @@ def create_srt(transcriptions, srt_file):
 
 # Step 4: Convert SRT to ASS (FFmpeg prefers ASS format)
 def convert_srt_to_ass(srt_path, ass_path):
-    command = ["ffmpeg", "-i", srt_path, ass_path]
+    command = ["ffmpeg", "-y", "-i", srt_path, ass_path] 
     subprocess.run(command, check=True)
     print(f"✅ Converted {srt_path} to {ass_path}")
-
-def update_ass_style(ass_path, font_color="&H0000FFFF", font_name="Arial"):
+    
+def update_ass_style(ass_path, font_color="&H0000FFFF", font_name="Montserrat", font_size=24, position="BottomCenter"):
     with open(ass_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
@@ -99,13 +99,19 @@ def update_ass_style(ass_path, font_color="&H0000FFFF", font_name="Arial"):
             parts = line.strip().split(",")
             parts[1] = font_name         # Fontname
             parts[3] = font_color        # PrimaryColour
+            parts[8] = str(font_size)    # Fontsize
+            # Position: Adjusting the alignment of the text
+            if position == "BottomCenter":
+                parts[6] = "2"  # Centered alignment (bottom-center)
+            elif position == "Bottom":
+                parts[6] = "6"  # Just bottom alignment
             lines[i] = ",".join(parts) + "\n"
             break
 
     with open(ass_path, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
-    print(f"🎨 Updated font to '{font_name}' and color to '{font_color}' in {ass_path}")
+    print(f"🎨 Updated font to '{font_name}', color to '{font_color}', size to '{font_size}', and position to '{position}' in {ass_path}")
 
 
 
