@@ -23,7 +23,7 @@ def select_directory(title):
 
 # Get user-selected files
 VIDEO_PATH = select_file("Select a Video File", [("MP4 files", "*.mp4"), ("All files", "*.*")])
-MODEL_PATH = r"C:/Users/dhruv/Downloads/vosk-model-small-hi-0.22"
+MODEL_PATH = r"C:/Users/dhruv/Downloads/vosk-model-en-us-0.42-gigaspeech"
 
 # Auto-generate paths
 AUDIO_PATH = "temp_audio.wav"
@@ -90,6 +90,25 @@ def convert_srt_to_ass(srt_path, ass_path):
     subprocess.run(command, check=True)
     print(f"✅ Converted {srt_path} to {ass_path}")
 
+def update_ass_style(ass_path, font_color="&H0000FFFF", font_name="Arial"):
+    with open(ass_path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    for i, line in enumerate(lines):
+        if line.startswith("Style:"):
+            parts = line.strip().split(",")
+            parts[1] = font_name         # Fontname
+            parts[3] = font_color        # PrimaryColour
+            lines[i] = ",".join(parts) + "\n"
+            break
+
+    with open(ass_path, "w", encoding="utf-8") as f:
+        f.writelines(lines)
+
+    print(f"🎨 Updated font to '{font_name}' and color to '{font_color}' in {ass_path}")
+
+
+
 # Step 5: Embed Subtitles in Video
 def add_subtitles_to_video(video_path, subtitle_path, output_path):
     video_path = video_path.replace("\\", "/")
@@ -120,6 +139,7 @@ def generate_subtitled_video():
     transcriptions = transcribe_audio(AUDIO_PATH, MODEL_PATH)
     create_srt(transcriptions, SRT_PATH)
     convert_srt_to_ass(SRT_PATH, ASS_PATH)  # Convert SRT to ASS
+    update_ass_style(ASS_PATH, font_color="&H0000FFFF",font_name="Montserrat")  # Yellow
     add_subtitles_to_video(VIDEO_PATH, ASS_PATH, OUTPUT_VIDEO_PATH)  # Embed subtitles
     print(f"🎬 Final video saved at {OUTPUT_VIDEO_PATH}")
 
