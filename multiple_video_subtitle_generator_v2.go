@@ -1,11 +1,14 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
@@ -25,6 +28,29 @@ func formatTime(seconds float64) string {
 	s := int(d.Seconds()) % 60
 	cs := int(d.Milliseconds()/10) % 100
 	return fmt.Sprintf("%01d:%02d:%02d.%02d", h, m, s, cs)
+}
+
+func getVideoDuration(filePath string) (float64, error) {
+	cmd := exec.Command("ffprobe", "-v", "error", "-show_entries", "format=duration",
+		"-of", "json", filePath)
+
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		return 0, err
+	}
+
+	var result struct {
+		Format struct {
+			Duration string `json:"duration"`
+		} `json:"format"`
+	}
+	if err := json.Unmarshal(out.Bytes(), &result); err != nil {
+		return 0, err
+	}
+
+	return strconv.ParseFloat(result.Format.Duration, 64)
 }
 
 func processVideo(inputVideo, outputVideo string) {
@@ -117,6 +143,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 	flushLine()
 
 	fmt.Println("🎬 Burning subtitles and overlaying GIFs...")
+	duration, err := getVideoDuration(inputVideo)
+	if err != nil {
+		log.Fatal("Error getting video duration:", err)
+	}
+	startSecond := duration - 10
+	overlayEnable := fmt.Sprintf("enable='lt(t,15)+gte(t,%.2f)'", startSecond)
 
 	// cmd = exec.Command("ffmpeg", "-y",
 	// 	"-i", inputVideo,
@@ -140,12 +172,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 	// 	"-c:a", "aac", "-shortest",
 	// 	outputVideo)
 
-	// only subscirbe button with infinite loop
+	// From the start (0s) to 15s, and
+	// From the last 10 seconds of the video (i.e., duration - 10 to duration)
 	cmd = exec.Command("ffmpeg", "-y",
 		"-i", inputVideo,
-		"-stream_loop", "-1", "-i", "new_subscribe.gif", // 👈 Infinite loop GIF
+		"-stream_loop", "-1", "-i", "new_subscribe.gif",
 		"-filter_complex",
-		fmt.Sprintf("[0:v][1:v]overlay=10:10:enable='between(t,1,16)',ass=%s", assPath),
+		fmt.Sprintf("[0:v][1:v]overlay=10:10:%s,ass=%s", overlayEnable, assPath),
 		"-map", "0:a",
 		"-c:v", "libx264", "-crf", "23", "-preset", "fast",
 		"-c:a", "aac", "-shortest",
@@ -228,3 +261,11 @@ func main() {
 // Perfect — you want to show the Subscribe.gif only from 25s to 35s during your 60-second video.
 
 // You can do that using FFmpeg’s enable='between(t,25,35)' in the overlay filter.
+
+// First 15 seconds: lt(t,15)
+
+// Last 10 seconds: gte(t, duration-10)
+
+// You dynamically inject duration in the Go code.
+
+// Let me know if you also want to fade in/out the GIF during these segments!
