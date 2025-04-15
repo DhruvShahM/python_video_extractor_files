@@ -3,7 +3,6 @@
 // import (
 // 	"encoding/json"
 // 	"fmt"
-// 	"math/rand"
 // 	"os"
 // 	"os/exec"
 // 	"path/filepath"
@@ -41,7 +40,7 @@
 
 // 	fmt.Println("🧠 Transcribing:", inputVideo)
 // 	transcriptPath := "transcript.json"
-// 	cmd = exec.Command("python", "whisper_transcribe.py", audioPath, transcriptPath)
+// 	cmd = exec.Command("python", "whisper_hindi_transcribe.py", audioPath, transcriptPath)
 // 	cmd.Stdout = os.Stdout
 // 	cmd.Stderr = os.Stderr
 // 	if err := cmd.Run(); err != nil {
@@ -68,24 +67,26 @@
 // 	}
 // 	defer f.Close()
 
+// 	// Fullscreen subtitle style optimized for 1920x1080 videos
 // 	header := `[Script Info]
-// Title: Animated Subs
+// Title: Full Screen Subs
 // ScriptType: v4.00+
+// PlayResX: 1920
+// PlayResY: 1080
 // Timer: 100.0000
 
 // [V4+ Styles]
 // Format: Name, Fontname, Fontsize, PrimaryColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-// Style: Default,Arial,18,&H00FFFF,&H40000000,-1,0,0,0,100,100,0,0,1,1,0,2,20,20,50,1
+// Style: FullScreen,Mangal,60,&H00FFFF&,&H64000000,-1,0,0,0,100,100,0,0,1,3,1,2,50,50,100,1
 
 // [Events]
 // Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-
-// 	`
+// `
 // 	f.WriteString(header)
 
 // 	var line []Word
 // 	const maxWordsPerLine = 3
-// 	const maxDurationPerLine = 5.0 // Adjust as needed
+// 	const maxDurationPerLine = 5.0 // seconds
 
 // 	flushLine := func() {
 // 		if len(line) == 0 {
@@ -94,21 +95,11 @@
 // 		start := line[0].Start
 // 		end := line[len(line)-1].End
 // 		text := ""
-// 		rand.Seed(time.Now().UnixNano()) // Seed the random generator once
 // 		for _, w := range line {
 // 			kDur := int((w.End - w.Start) * 100)
-
-// 			// Randomly choose a color
-// 			if rand.Intn(2) == 0 {
-// 				// Bright Cyan
-// 				text += fmt.Sprintf("{\\k%d}{\\c&&H00FFFF00&}%s ", kDur, w.Word)
-// 			} else {
-// 				// Yellow
-// 				text += fmt.Sprintf("{\\k%d}{\\c&H00FFFF&}%s ", kDur, w.Word)
-// 			}
+// 			text += fmt.Sprintf("{\\k%d}%s ", kDur, w.Word)
 // 		}
-
-// 		lineStr := fmt.Sprintf("Dialogue: 0,%s,%s,Default,,0,0,0,,%s\n", formatTime(start), formatTime(end), text)
+// 		lineStr := fmt.Sprintf("Dialogue: 0,%s,%s,FullScreen,,0,0,0,,%s\n", formatTime(start), formatTime(end), strings.TrimSpace(text))
 // 		f.WriteString(lineStr)
 // 		line = nil
 // 	}

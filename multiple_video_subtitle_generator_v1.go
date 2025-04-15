@@ -3,7 +3,6 @@
 // import (
 // 	"encoding/json"
 // 	"fmt"
-// 	"math/rand"
 // 	"os"
 // 	"os/exec"
 // 	"path/filepath"
@@ -75,7 +74,7 @@
 
 // [V4+ Styles]
 // Format: Name, Fontname, Fontsize, PrimaryColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-// Style: Default,Arial,18,&H00FFFF,&H40000000,-1,0,0,0,100,100,0,0,1,1,0,2,20,20,50,1
+// Style: Default,Arial,24,&H00FFFF,&H40000000,-1,0,0,0,100,100,0,0,1,1,0,2,20,20,40,1
 
 // [Events]
 // Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -94,18 +93,14 @@
 // 		start := line[0].Start
 // 		end := line[len(line)-1].End
 // 		text := ""
-// 		rand.Seed(time.Now().UnixNano()) // Seed the random generator once
-// 		for _, w := range line {
+// 		for i, w := range line {
 // 			kDur := int((w.End - w.Start) * 100)
-
-// 			// Randomly choose a color
-// 			if rand.Intn(2) == 0 {
-// 				// Bright Cyan
-// 				text += fmt.Sprintf("{\\k%d}{\\c&&H00FFFF00&}%s ", kDur, w.Word)
+// 			if i == 0 {
+// 				text += fmt.Sprintf("{\\k%d}{\\c&HFFFFFF&}%s ", kDur, w.Word) // White for first word
 // 			} else {
-// 				// Yellow
-// 				text += fmt.Sprintf("{\\k%d}{\\c&H00FFFF&}%s ", kDur, w.Word)
+// 				text += fmt.Sprintf("{\\k%d}{\\c&H00FFFF&}%s ", kDur, w.Word) // Yellow for subsequent words
 // 			}
+
 // 		}
 
 // 		lineStr := fmt.Sprintf("Dialogue: 0,%s,%s,Default,,0,0,0,,%s\n", formatTime(start), formatTime(end), text)

@@ -94,18 +94,22 @@
 // 		start := line[0].Start
 // 		end := line[len(line)-1].End
 // 		text := ""
-// 		rand.Seed(time.Now().UnixNano()) // Seed the random generator once
+// 		rand.Seed(time.Now().UnixNano())
+// 		var colors = []string{
+// 			`{\c&H00FFFF&}`,    // Yellow
+// 			`{\c&&H00FFFF00&}`, // Bright Cyan
+// 			`{\c&HFF0000&}`,    // Blue
+// 			`{\c&H00FF00&}`,    // Green
+// 			`{\c&H0000FF&}`,    // Red
+// 			`{\c&HFF00FF&}`,    // Purple
+// 			`{\c&H00FFAA&}`,    // Aqua
+// 			`{\c&HAA00FF&}`,    // Pinkish Purple
+// 			`{\c&HFFFF00&}`,    // Bright Yellow
+// 		}
 // 		for _, w := range line {
 // 			kDur := int((w.End - w.Start) * 100)
-
-// 			// Randomly choose a color
-// 			if rand.Intn(2) == 0 {
-// 				// Bright Cyan
-// 				text += fmt.Sprintf("{\\k%d}{\\c&&H00FFFF00&}%s ", kDur, w.Word)
-// 			} else {
-// 				// Yellow
-// 				text += fmt.Sprintf("{\\k%d}{\\c&H00FFFF&}%s ", kDur, w.Word)
-// 			}
+// 			randomColor := colors[rand.Intn(len(colors))]
+// 			text += fmt.Sprintf("{\\k%d}%s%s ", kDur, randomColor, w.Word)
 // 		}
 
 // 		lineStr := fmt.Sprintf("Dialogue: 0,%s,%s,Default,,0,0,0,,%s\n", formatTime(start), formatTime(end), text)
