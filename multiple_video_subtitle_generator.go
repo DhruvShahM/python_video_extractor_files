@@ -74,16 +74,17 @@ Timer: 100.0000
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Arial Black,18,&H00FFFF00,&H00000000,-1,0,0,0,100,100,0,0,1,4,1,8,20,20,200,1
+Style: Default,Arial,18,&H00FFFF,&H40000000,-1,0,0,0,100,100,0,0,1,1,0,2,20,20,50,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-`
+
+	`
 	f.WriteString(header)
 
 	var line []Word
-	maxWords := 4
-	maxDuration := 3.0
+	const maxWordsPerLine = 3
+	const maxDurationPerLine = 5.0 // Adjust as needed
 
 	flushLine := func() {
 		if len(line) == 0 {
@@ -92,17 +93,22 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 		start := line[0].Start
 		end := line[len(line)-1].End
 		text := ""
-		for _, w := range line {
+		for i, w := range line {
 			kDur := int((w.End - w.Start) * 100)
-			text += fmt.Sprintf("{\\k%d}%s ", kDur, w.Word)
+			if i == 1 { // Highlight the middle word (index 1 in a 3-word line)
+				text += fmt.Sprintf("{\\k%d}{\\c&&H00FFFF00&}%s ", kDur, w.Word) // Bright Cyan for middle
+			} else {
+				text += fmt.Sprintf("{\\k%d}{\\c&H00FFFF&}%s ", kDur, w.Word) // Yellow for others
+			}
 		}
+
 		lineStr := fmt.Sprintf("Dialogue: 0,%s,%s,Default,,0,0,0,,%s\n", formatTime(start), formatTime(end), text)
 		f.WriteString(lineStr)
 		line = nil
 	}
 
 	for _, w := range words {
-		if len(line) == 0 || (len(line) < maxWords && w.End-line[0].Start <= maxDuration) {
+		if len(line) < maxWordsPerLine && (len(line) == 0 || w.End-line[0].Start <= maxDurationPerLine) {
 			line = append(line, w)
 		} else {
 			flushLine()
