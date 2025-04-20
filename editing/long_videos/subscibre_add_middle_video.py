@@ -119,13 +119,15 @@ def process_videos():
         [middle_v_scaled]setpts=PTS-STARTPTS+{half_time_sec}/TB[middle_v];
         [0:v][start_v]overlay=W-w-20:H-h-20:enable='lt(t,{start_overlay_duration})'[tmp1];
         [tmp1][middle_v]overlay=W-w-20:H-h-20:enable='between(t,{half_time_sec},{middle_overlay_end_time})'[vout];
-        
+
         [1:a]atrim=0:{start_overlay_duration},asetpts=PTS-STARTPTS,volume=1.5[start_a];
         [2:a]atrim=0:{middle_overlay_duration},asetpts=PTS-STARTPTS,adelay={adelay_value}|{adelay_value},volume=1.8[middle_a];
-        [0:a]volume=0.8[main_a];
+        [0:a]volume=2.0[main_a];
         [main_a][start_a]amix=inputs=2:duration=first:dropout_transition=2[tmpa];
         [tmpa][middle_a]amix=inputs=2:duration=first:dropout_transition=2[aout]
+
         """
+
         # --- *** End Filter Complex *** ---
         filter_complex = ' '.join(filter_complex.split()) # Clean up whitespace
 
