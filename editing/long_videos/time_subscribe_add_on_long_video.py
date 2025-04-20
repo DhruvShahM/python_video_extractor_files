@@ -234,3 +234,160 @@ process_button.pack(pady=20)
 # --- Start GUI ---
 root.mainloop()
 
+
+
+
+
+# [1:v]scale=iw/3:ih/3[start_v];
+# [1:v] = video stream from input 1 (first overlay video).
+
+# scale=iw/3:ih/3 = scale the width (iw) and height (ih) to one-third.
+
+# [start_v] = label this output as start_v (we'll use it later).
+
+# 🧠 Result: a small version of input 1's video, labeled start_v.
+
+# python
+# Copy
+# Edit
+# [2:v]scale=iw/3:ih/3[middle_v_scaled];
+# [2:v] = video stream from input 2 (second overlay video).
+
+# scale=iw/3:ih/3 = scale it the same way.
+
+# [middle_v_scaled] = label the result.
+
+# 🧠 Result: a small version of input 2’s video, labeled middle_v_scaled.
+
+# python
+# Copy
+# Edit
+# [middle_v_scaled]setpts=PTS-STARTPTS+{half_time_sec}/TB[middle_v];
+# setpts = set presentation timestamps.
+
+# PTS-STARTPTS = reset the timeline (start from zero).
+
+# +{half_time_sec}/TB = add a delay of half_time_sec seconds.
+
+# TB = time base (a scaling factor).
+
+# [middle_v] = final labeled result.
+
+# 🧠 Now this second video will start showing at half_time_sec.
+
+# python
+# Copy
+# Edit
+# [0:v][start_v]overlay=W-w-20:H-h-20:enable='lt(t,{start_overlay_duration})'[tmp1];
+# [0:v] = main background video.
+
+# [start_v] = small overlay from input 1.
+
+# overlay=W-w-20:H-h-20 = position it bottom-right:
+
+# W = full canvas width
+
+# w = overlay width
+
+# W-w-20 = 20 pixels from right
+
+# H = full canvas height
+
+# h = overlay height
+
+# H-h-20 = 20 pixels from bottom
+
+# enable='lt(t,{start_overlay_duration})' = show only if time t is less than start_overlay_duration
+
+# [tmp1] = temporary result.
+
+# 🧠 Overlays start_v in the corner for a limited time.
+
+# python
+# Copy
+# Edit
+# [tmp1][middle_v]overlay=W-w-20:H-h-20:enable='between(t,{half_time_sec},{middle_overlay_end_time})'[vout];
+# [tmp1] = result from the previous step (background + start overlay).
+
+# [middle_v] = second overlay (with delayed start).
+
+# overlay=W-w-20:H-h-20 = same position.
+
+# enable='between(t,{half_time_sec},{middle_overlay_end_time})' = show only between half_time_sec and middle_overlay_end_time.
+
+# [vout] = final video result.
+
+# 🧠 Overlays the second video after a delay, for a defined duration.
+
+# 🔊 AUDIO FILTER SECTION (Mixing)
+# python
+# Copy
+# Edit
+# [1:a]atrim=0:{start_overlay_duration},asetpts=PTS-STARTPTS,volume=1.5[start_a];
+# [1:a] = audio from input 1 (first overlay).
+
+# atrim=0:{start_overlay_duration} = cut audio to this time range.
+
+# asetpts=PTS-STARTPTS = reset audio timestamps.
+
+# volume=1.5 = amplify volume by 1.5x.
+
+# [start_a] = label result.
+
+# 🧠 This is trimmed and amplified audio from input 1.
+
+# python
+# Copy
+# Edit
+# [2:a]atrim=0:{middle_overlay_duration},asetpts=PTS-STARTPTS,adelay={adelay_value}|{adelay_value},volume=1.8[middle_a];
+# [2:a] = audio from input 2.
+
+# atrim=0:{middle_overlay_duration} = cut the audio.
+
+# asetpts=PTS-STARTPTS = reset timestamps.
+
+# adelay={adelay_value}|{adelay_value} = delay left and right channels by {adelay_value} milliseconds.
+
+# volume=1.8 = amplify.
+
+# [middle_a] = result.
+
+# 🧠 This audio is delayed to sync with the video overlay and made louder.
+
+# python
+# Copy
+# Edit
+# [0:a]volume=0.8[main_a];
+# [0:a] = main video’s audio.
+
+# volume=0.8 = reduce volume to 80%.
+
+# [main_a] = result.
+
+# 🧠 Main background audio, slightly quieter to make space for overlays.
+
+# python
+# Copy
+# Edit
+# [main_a][start_a]amix=inputs=2:duration=first:dropout_transition=2[tmpa];
+# Mix [main_a] + [start_a].
+
+# inputs=2 = mixing two audio streams.
+
+# duration=first = output will stop when the shortest input ends (start_a).
+
+# dropout_transition=2 = 2s smooth transition between clips.
+
+# [tmpa] = result.
+
+# 🧠 Main audio mixed with the first overlay’s audio.
+
+# python
+# Copy
+# Edit
+# [tmpa][middle_a]amix=inputs=2:duration=first:dropout_transition=2[aout]
+# Mix previous result [tmpa] + delayed second overlay audio [middle_a].
+
+# Final audio result is [aout].
+
+# 🧠 This is the final mixed audio: main + overlay1 + overlay2.
