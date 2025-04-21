@@ -100,7 +100,7 @@ Timer: 100.0000
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Arial,18,&H00FFFF,&H40000000,-1,0,0,0,100,100,0,0,1,1,0,2,20,20,40,1
+Style: Default,Arial,16,&H00FFFF,&H40000000,-1,0,0,0,100,100,0,0,1,1,0,2,20,20,65,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

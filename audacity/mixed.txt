@@ -1,0 +1,11 @@
+SelectAll:
+Duplicate:
+Select:"Mode=Set"
+SetTrack:Pan="-1"
+Select:"Mode=Set" Track="1"
+SetTrack:Pan="1"
+Select:Mode="Set" TrackCount="2"
+MixAndRender:
+Select:Mode="Set" TrackCount="0.5"
+SetTrack:Display="Spectrogram"
+Select:"Mode=Set" TrackCount="0"

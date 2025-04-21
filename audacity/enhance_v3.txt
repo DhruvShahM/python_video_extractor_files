@@ -1,0 +1,6 @@
+SelectAll:
+NoiseReduction: "6" "6.00" "3.00"
+Compressor: "-18" "-40" "4" "0.20" "1.0" "0"
+TruncateSilence: "0" "0" "0.15" "-40" "1" "0.7" "1" "0.1"
+Normalize: "-1.0" "1" "0" "0" "0"
+Limiter: "0" "-1" "10" "0" "0"

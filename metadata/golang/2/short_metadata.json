@@ -1,0 +1,209 @@
+{
+  "videos": [
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/1.4_output_final_subtitled_merged.mp4",
+      "title": "⚙️ Built-in Concurrency and  Code Example in Go Explained in 60s!",
+      "description": "🧵 Handle thousands of tasks easily:\n\n- 🌀 Goroutines  Threads\n- 🔄 Channels for safe communication\n- 🐳 Powering Docker & Kubernetes\n\n#GolangConcurrency #GoLang #InterviewReady #Microservices",
+      "tags": [
+        "go concurrency",
+        "goroutines",
+        "channels",
+        "docker",
+        "go for devs",
+        "go concurrency",
+        "go code snippet",
+        "goroutine example",
+        "interview demo"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-24 02:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/1.5_output_final_subtitled_merged.mp4",
+      "title": "⚡ Why Compiled Go Code is Super Fast!",
+      "description": "🚀 Go compiles to machine code:\n\n- 💨 Lightning-fast execution\n- 💾 Low memory usage\n- 📦 Perfect for CLI tools & microservices\n\n#GoLang #Performance #CompiledLanguages #FastCode",
+      "tags": [
+        "golang",
+        "compiled language",
+        "performance",
+        "go microservices"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-25 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/1.6_output_final_subtitled_merged.mp4",
+      "title": "🧹 Go's Garbage Collector – Efficient & Lightweight!",
+      "description": "🧼 No manual memory management:\n\n- 🔁 Automatic GC with low pause time\n- 🧠 Focus more on logic, less on leaks\n- 🚧 Ideal for long-running services\n\n#GoLangGC #GarbageCollection #MemoryManagement",
+      "tags": [
+        "go garbage collector",
+        "memory management",
+        "go performance"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-26 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/1.7_output_final_subtitled_merged.mp4",
+      "title": "📦 Go's Rich Standard Library – Use Out-of-the-Box Tools!",
+      "description": "🧰 No need for 1000 dependencies:\n\n- 🌐 HTTP, file I/O, crypto, strings, more\n- ⚙️ Build an HTTP server in 5 lines!\n- 🔐 More secure, more maintainable\n\n#GoLang #StandardLibrary #BuiltInTools #DevProductivity",
+      "tags": [
+        "golang stdlib",
+        "standard library",
+        "go http",
+        "built-in packages"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-27 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/1.8_output_final_subtitled_merged.mp4",
+      "title": "🌍 Go Cross-Platform Compilation and code for Linux on any system in 1 Command!",
+      "description": "🚀 Deploy anywhere with Go:\n\n- 🔁 Linux, Windows, macOS, ARM… all from one source!\n- ⚒️ Easy cloud & edge deployment\n- 🔄 Zero code changes needed\n\n#GoLang #CrossPlatform #GoBuild #DeploymentReady",
+      "tags": [
+        "golang",
+        "cross platform",
+        "build for linux",
+        "go deployment",
+        "golang",
+        "go build",
+        "linux compile",
+        "go cross platform"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-28 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/1.9_output_final_subtitled_merged.mp4",
+      "title": "⚡ Go’s Compilation Speed Will Blow Your Mind!",
+      "description": "⏱️ Instant feedback = Better dev cycles:\n\n- 🧪 Single-pass compiler\n- 🔁 Optimized build cache\n- 📦 Super fast CI/CD pipelines\n\n#GoLangSpeed #FastCompile #DevExperience #CodingEfficiency",
+      "tags": [
+        "golang",
+        "fast compile",
+        "developer productivity",
+        "go build system"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-29 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/2.0_output_final_subtitled_merged.mp4",
+      "title": "🧰 Must-Know Go Tools for Every Developer!",
+      "description": "🛠️ Out-of-the-box dev tools:\n\n- 🎨 `gofmt` for code formatting\n- 🧪 `go test` for testing\n- 📦 `go mod` for dependencies\n- 📚 `godoc` for docs\n\n#GoLangTools #GoFmt #GoTest #DevProductivity",
+      "tags": [
+        "golang",
+        "go tools",
+        "gofmt",
+        "go test",
+        "godoc",
+        "developer tools"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-04-30 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/2.1_output_final_subtitled_merged.mp4",
+      "title": "🧩 Go Interfaces and Interface Implementation – No Inheritance Needed!",
+      "description": "🔗 Interface-based design FTW:\n\n- 👻 Implicit implementation\n- 🔄 Loose coupling & testable code\n- 📦 Works with types like `io.Reader`\n\n#GoLangInterfaces #CleanArchitecture #GoTips #InterviewReady",
+      "tags": [
+        "golang",
+        "go interfaces",
+        "interface design",
+        "io.Reader",
+        "go patterns",
+        "go interfaces",
+        "reader interface",
+        "go example",
+        "interface code"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-05-01 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/2.2_output_final_subtitled_merged.mp4",
+      "title": "🛡️ Go = Safe Memory Without the Hassle!",
+      "description": "💾 Say goodbye to segfaults:\n\n- ❌ No pointer arithmetic\n- ✅ Type-safe conversions\n- 🧼 Clean memory handling with GC\n\n#GoLang #MemorySafe #BackendDev #InterviewInsights",
+      "tags": [
+        "go memory safety",
+        "pointer safety",
+        "type system",
+        "garbage collection"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-05-02 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/2.3_output_final_subtitled_merged.mp4",
+      "title": "☁️ Go vs Python in 1 min!",
+      "description": "🏗️ Why Go shines in the cloud:\n\n- 📦 Static binaries, fast builds\n- ⚡ Handles 1000s of requests via goroutines\n- 🐳 Ideal for Docker & Kubernetes\n\n#GoLang #CloudNative #Microservices #DevOps",
+      "tags": [
+        "go microservices",
+        "cloud-native",
+        "go in docker",
+        "kubernetes",
+        "devops",
+        "go vs python"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-05-03 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    },
+    {
+      "videoFile": "C:/Users/dhruv/Videos/2025/golang_interview_questions/2/subscribe_videos/2.4_output_final_subtitled_merged.mp4",
+      "title": "🥊 Go vs Java – Which Should You Pick?",
+      "description": "🤔 Quick comparison for interviews:\n\n- ⚡ Go is faster than Python\n- 🧠 Simpler & lighter than Java\n- 🚀 Ideal for backend, microservices & speed\n\n#GoVsPython #GoVsJava #DevInterview #LanguageComparison",
+      "tags": [
+        "golang",
+        "go vs python",
+        "go vs java",
+        "language comparison",
+        "interview questions"
+      ],
+      "categoryName": "Education",
+      "privacyStatus": "public",
+      "publishAt": "2025-05-04 12:00:00",
+      "madeForKids": false,
+      "ageRestriction": false,
+      "playlistName": "Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews"
+    }
+  ]
+}
