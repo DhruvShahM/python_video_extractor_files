@@ -7,7 +7,7 @@ audio_path = sys.argv[1]
 output_path = sys.argv[2]
 
 # Load the Whisper model (base size) with int8 precision on CPU
-model = WhisperModel("base", device="cpu", compute_type="int8")
+model = WhisperModel("large-v3", device="cpu", compute_type="int8")
 
 # Transcribe the audio in Hindi using beam search and get word timestamps
 segments, _ = model.transcribe(audio_path, beam_size=5, word_timestamps=True, language="hi")
