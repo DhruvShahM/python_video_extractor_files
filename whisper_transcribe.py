@@ -4,8 +4,8 @@ from faster_whisper import WhisperModel
 
 audio_path = sys.argv[1]
 output_path = sys.argv[2]
-
-model = WhisperModel("large-v3", device="cpu", compute_type="int8")
+# large-v3
+model = WhisperModel("medium", device="cpu", compute_type="int8")
 segments, _ = model.transcribe(audio_path, beam_size=5, word_timestamps=True)
 
 words = []
