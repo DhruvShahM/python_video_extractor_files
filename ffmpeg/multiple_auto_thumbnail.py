@@ -1,18 +1,7 @@
 import os
 import subprocess
-from tkinter import Tk, filedialog
+from tkinter import Tk, filedialog, Label, Button, Checkbutton, IntVar, BooleanVar, Text, Scrollbar, END, Frame, W, E
 from PIL import Image
-
-def select_video_files():
-    """Open dialog to select multiple video files"""
-    root = Tk()
-    root.withdraw()
-    files = filedialog.askopenfilenames(
-        title="Select Video Files",
-        filetypes=[("Video Files", "*.mp4;*.avi;*.mov;*.mkv")]
-    )
-    root.destroy()
-    return list(files)
 
 def get_video_duration(video_path):
     """Get duration of video in seconds"""
@@ -27,49 +16,97 @@ def get_video_duration(video_path):
     except:
         return 5.0  # fallback duration
 
-def extract_thumbnail(video_path, output_folder, preview=False):
-    """Extract and save thumbnail at 20% mark"""
+def extract_thumbnails(video_path, output_folder, strategies, preview=False, log_output=None):
+    """Extract and save thumbnails based on strategies"""
     filename = os.path.basename(video_path)
     name, _ = os.path.splitext(filename)
-    thumbnail_path = os.path.join(output_folder, f"{name}_thumbnail.jpg")
-    temp_path = os.path.join(output_folder, "temp_thumb.jpg")
-
-    # Get duration
     duration = get_video_duration(video_path)
-    timestamp = duration * 0.2
 
-    # Extract thumbnail
-    subprocess.run([
-        "ffmpeg", "-y", "-ss", str(timestamp), "-i", video_path,
-        "-vframes", "1", "-q:v", "2", temp_path
-    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    timestamps = []
 
-    if not os.path.exists(temp_path):
-        print(f"❌ Failed to extract thumbnail from {filename}")
+    if strategies["start"].get():
+        timestamps.append((0.0, f"{name}_start.jpg"))
+
+    if strategies["20%"].get():
+        timestamps.append((duration * 0.2, f"{name}_20percent.jpg"))
+
+    if strategies["middle"].get():
+        timestamps.append((duration * 0.5, f"{name}_middle.jpg"))
+
+    if strategies["multi"].get():
+        for percent in [0.1, 0.5, 0.9]:
+            ts = duration * percent
+            suffix = f"{int(percent * 100)}percent"
+            timestamps.append((ts, f"{name}_{suffix}.jpg"))
+
+    for ts, out_filename in timestamps:
+        temp_path = os.path.join(output_folder, "temp_thumb.jpg")
+        out_path = os.path.join(output_folder, out_filename)
+
+        subprocess.run([
+            "ffmpeg", "-y", "-ss", str(ts), "-i", video_path,
+            "-vframes", "1", "-q:v", "2", temp_path
+        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        if not os.path.exists(temp_path):
+            log_output.insert(END, f"❌ Failed: {out_filename}\n")
+            continue
+
+        img = Image.open(temp_path).resize((1280, 720))
+        img.save(out_path, "JPEG", quality=90)
+        log_output.insert(END, f"✅ Saved: {out_path}\n")
+
+        if preview:
+            img.show(title=out_filename)
+
+        os.remove(temp_path)
+
+def run_generator():
+    files = filedialog.askopenfilenames(
+        title="Select Video Files",
+        filetypes=[("Video Files", "*.mp4;*.avi;*.mov;*.mkv")]
+    )
+    if not files:
         return
 
-    # Resize and save
-    img = Image.open(temp_path).resize((1280, 720))
-    img.save(thumbnail_path, "JPEG", quality=90)
-    print(f"✅ Saved: {thumbnail_path}")
+    output_folder = os.path.dirname(files[0])
+    log_output.insert(END, f"\n📁 Output Folder: {output_folder}\n\n")
+    for file in files:
+        extract_thumbnails(file, output_folder, strategies, preview=preview_var.get(), log_output=log_output)
 
-    if preview:
-        img.show(title=filename)
+# GUI setup
+root = Tk()
+root.title("Auto Thumbnail Generator")
 
-    os.remove(temp_path)
+# Strategy checkboxes
+strategies = {
+    "start": IntVar(value=1),
+    "20%": IntVar(value=1),
+    "middle": IntVar(value=1),
+    "multi": IntVar(value=0)
+}
+preview_var = BooleanVar(value=False)
 
-def batch_generate_thumbnails(preview=False):
-    """Main function to batch generate thumbnails"""
-    video_files = select_video_files()
-    if not video_files:
-        print("No video files selected.")
-        return
+Label(root, text="Choose Thumbnail Strategies:", font=('Arial', 12, 'bold')).grid(row=0, column=0, sticky=W, padx=10, pady=5)
 
-    output_folder = os.path.dirname(video_files[0])
-    print(f"\n📁 Saving thumbnails to: {output_folder}\n")
+row_idx = 1
+for key, var in strategies.items():
+    Checkbutton(root, text=f"{key} frame", variable=var).grid(row=row_idx, column=0, sticky=W, padx=20)
+    row_idx += 1
 
-    for video in video_files:
-        extract_thumbnail(video, output_folder, preview)
+Checkbutton(root, text="Preview Thumbnails", variable=preview_var).grid(row=row_idx, column=0, sticky=W, padx=20)
+row_idx += 1
 
-if __name__ == "__main__":
-    batch_generate_thumbnails(preview=False)  # Set preview=True to see thumbnails
+Button(root, text="Select Videos & Generate Thumbnails", command=run_generator, bg="green", fg="white").grid(row=row_idx, column=0, pady=10, padx=10, sticky=E+W)
+row_idx += 1
+
+# Output log
+frame = Frame(root)
+frame.grid(row=row_idx, column=0, padx=10, pady=10)
+log_output = Text(frame, height=15, width=80)
+scroll = Scrollbar(frame, command=log_output.yview)
+log_output.configure(yscrollcommand=scroll.set)
+log_output.pack(side="left")
+scroll.pack(side="right", fill="y")
+
+root.mainloop()
